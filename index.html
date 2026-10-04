@@ -140,8 +140,21 @@ details.acc[open]>summary::after{content:"－"}
   <div class="settings">
     <div><div class="lbl">Zakres sesji</div>
       <div class="seg" id="rt">
-        <button data-r="full" aria-pressed="true">Pełna sesja · ~20 min</button>
-        <button data-r="work" aria-pressed="false">⚡ Reset w pracy · ~5 min</button>
+        <button data-r="full" aria-pressed="true">Pełna · ~20 min</button>
+        <button data-r="work" aria-pressed="false">⚡ W pracy · ~5 min</button>
+        <button data-r="neck" aria-pressed="false">Szyja i kark</button>
+        <button data-r="thorax" aria-pressed="false">Piersiowy i barki</button>
+        <button data-r="hips" aria-pressed="false">Biodra i nogi</button>
+      </div></div>
+    <div><div class="lbl">Pozycja / sprzęt</div>
+      <div class="seg" id="mat">
+        <button data-m="0" aria-pressed="true">Wszędzie</button>
+        <button data-m="1" aria-pressed="false">🚫 Bez maty (biuro)</button>
+      </div></div>
+    <div><div class="lbl">Automatyczny podział na strony (L/P)</div>
+      <div class="seg" id="sides">
+        <button data-v="1" aria-pressed="true">Włączony</button>
+        <button data-v="0" aria-pressed="false">Wyłączony</button>
       </div></div>
     <div><div class="lbl">Przerwa między ćwiczeniami</div>
       <div class="seg" id="brk">
@@ -216,7 +229,7 @@ details.acc[open]>summary::after{content:"－"}
    sec: czas trwania w sekundach.  side: podpowiedź (np. "każda strona po 30 s").
    work: true => wchodzi do szybkiej sesji "Reset w pracy". */
 const EX=[
- {name:"Cat–Cow (kot–krowa)",sec:60,side:"Całe ciało · 8–10 powolnych powtórzeń",video:"fcnv4gyMzf8",area:"cały kręgosłup",difficulty:"Łatwy",work:false,
+ {id:"cat-cow",mat:true,name:"Cat–Cow (kot–krowa)",sec:60,side:"Całe ciało · 8–10 powolnych powtórzeń",video:"fcnv4gyMzf8",area:"cały kręgosłup",difficulty:"Łatwy",work:false,
   why:"Płynna mobilizacja całego kręgosłupa — od miednicy, przez odcinek lędźwiowy i piersiowy, aż do szyi. Idealne rozgrzanie po długim siedzeniu.",
   steps:["Klęknij na macie: dłonie pod barkami, kolana pod biodrami.","Wdech — wydłuż kręgosłup, unieś mostek i kość ogonową, wzrok lekko w górę („krowa”).","Wydech — zaokrąglij plecy, podwiń miednicę, brodę zbliż do mostka („kot”).","Poruszaj się wolno i płynnie: jeden wdech i wydech to jedna fala ruchu.","Nie szukaj maksymalnego zakresu — liczy się równomierny ruch."],
   feel:"Płynną falę ruchu od miednicy przez plecy do szyi; lekkie rozciągnięcie z tyłu tułowia w „kocie”.",
@@ -225,7 +238,7 @@ const EX=[
   breath:"Wdech w „krowie”, wydech w „kocie” — oddech prowadzi ruch.",
   easier:"Wykonuj siedząc na krześle — tylko odcinek piersiowy i lędźwiowy.",
   harder:"Zatrzymaj 2–3 s w skrajnej pozycji i dodaj delikatną rotację w „kocie”."},
- {name:"Chin Tuck (retrakcja szyi)",sec:60,side:"10 powtórzeń po 5 s",video:"O2kkwT6t3R0",area:"szyja · kark · postawa",difficulty:"Łatwy",work:true,
+ {id:"chin-tuck",mat:false,name:"Chin Tuck (retrakcja szyi)",sec:60,side:"10 powtórzeń po 5 s",video:"O2kkwT6t3R0",area:"szyja · kark · postawa",difficulty:"Łatwy",work:true,
   why:"Koryguje wysuniętą do przodu głowę i aktywuje głębokie mięśnie szyi — bezpieczne, codzienne ćwiczenie na napięty kark.",
   steps:["Siądź lub stań wyprostowany, wzrok na wysokości oczu, barki rozluźnione.","Delikatnie cofnij głowę do tyłu, tworząc lekki „podwójny podbródek” — bez pochylania w dół.","Ruch jest poziomy (cofanie), nie schodzenie brodą do mostka.","Przytrzymaj 5 s, rozluźnij i powtórz.","Barki przez cały czas zostają opuszczone."],
   feel:"Napięcie pod potylicą i z przodu szyi oraz delikatne rozciągnięcie z tyłu karku.",
@@ -234,7 +247,7 @@ const EX=[
   breath:"Wdech nosem, na wydechu delikatnie pogłębiaj cofnięcie głowy.",
   easier:"Oprzyj tył głowy o ścianę i wykonuj bardzo mały ruch.",
   harder:"Wykonaj w leżeniu na plecach lub dodaj łagodny opór gumy za głową."},
- {name:"Rotacja i pochylenia szyi",sec:45,side:"Każda strona",video:"j3_8btE4X-w",area:"szyja · zakres ruchu",difficulty:"Łatwy",work:false,
+ {id:"neck-rom",mat:false,sides:2,name:"Rotacja i pochylenia szyi",sec:45,side:"Każda strona",video:"j3_8btE4X-w",area:"szyja · zakres ruchu",difficulty:"Łatwy",work:false,
   why:"Poprawia ograniczoną rotację szyi i przywraca płynność ruchu bez agresywnego rozciągania.",
   steps:["Siądź wyprostowany, barki rozluźnione.","Powoli obróć głowę w lewo do wygodnej granicy, potem w prawo.","Dodaj delikatne pochylenia w bok oraz lekkie zgięcie w przód i wyprost.","Ruch wykonuj wolno i płynnie, w zakresie bez bólu.","Nie pomagaj sobie ręką i nie dociskaj skrajnego zakresu."],
   feel:"Lekki opór i stopniowe zwiększanie swobody ruchu.",
@@ -243,7 +256,7 @@ const EX=[
   breath:"Spokojny oddech; na wydechu możesz minimalnie pogłębić zakres.",
   easier:"Zredukuj zakres o połowę i oprzyj plecy o oparcie.",
   harder:"Zatrzymaj 2 s na końcu każdej rotacji i wykonaj 10 powolnych powtórzeń."},
- {name:"Rozciąganie górnej części karku",sec:60,side:"Każda strona po 30 s",video:"xvZ9_5lqcVI",area:"kark · górny czworoboczny",difficulty:"Łatwy",work:true,
+ {id:"upper-trap",mat:false,sides:2,name:"Rozciąganie górnej części karku",sec:60,side:"Każda strona po 30 s",video:"xvZ9_5lqcVI",area:"kark · górny czworoboczny",difficulty:"Łatwy",work:true,
   why:"Ukierunkowane rozciągnięcie górnej części mięśnia czworobocznego — najczęstszego źródła napięcia przy pracy przy biurku.",
   steps:["Siądź wysoko na krześle; ręką po stronie rozciąganej złap krawędź siedziska.","Opuść bark w dół, oddalając go od ucha.","Przechyl głowę w stronę przeciwną, tak by ucho zbliżało się do ramienia.","Drugą dłoń połóż na głowie tylko jako lekki ciężar — nie ciągnij.","Wytrzymaj 30 s i zmień stronę."],
   feel:"Rozciągnięcie po bocznej stronie szyi i karku, w kierunku barku.",
@@ -252,7 +265,7 @@ const EX=[
   breath:"Wdech; na wydechu rozluźnij bark i pogłęb rozciągnięcie.",
   easier:"Bez ręki na głowie — tylko przechyl głowę i rozluźnij bark.",
   harder:"Dodaj lekki skręt i spójrz w dół do pachy dalszej ręki; przytrzymaj 20 s."},
- {name:"Rozciąganie dźwigacza łopatki",sec:60,side:"Każda strona po 30 s",video:"GSoXPJRnR6E",area:"kark · dźwigacz łopatki",difficulty:"Średni",work:false,
+ {id:"levator",mat:false,sides:2,name:"Rozciąganie dźwigacza łopatki",sec:60,side:"Każda strona po 30 s",video:"GSoXPJRnR6E",area:"kark · dźwigacz łopatki",difficulty:"Średni",work:false,
   why:"Dźwigacz łopatki łączy szyję z łopatką i bywa bardzo napięty przy komputerze — także po stronie „zgrzytającej” łopatki.",
   steps:["Siądź wyprostowany; obróć głowę o ok. 45° w stronę rozciąganą.","Opuść wzrok w kierunku pachy po stronie rozciąganej („do kieszeni”).","Delikatnie pochyl głowę; ręką możesz złapać siedzisko, by opuścić bark.","Drugą dłoń połóż na głowie jako lekki ciężar (opcjonalnie).","Wytrzymaj 30 s i zmień stronę."],
   feel:"Rozciągnięcie z tyłu i boku szyi, schodzące w stronę łopatki.",
@@ -261,7 +274,7 @@ const EX=[
   breath:"Powolny, spokojny oddech; na wydechu rozluźniaj bark.",
   easier:"Bez ręki na głowie i z mniejszym skrętem szyi.",
   harder:"Dodaj delikatną rotację tułowia w stronę skrętu szyi."},
- {name:"Thread the Needle (przeciąganie nici)",sec:75,side:"Każda strona",video:"blBC6222kuU",area:"odcinek piersiowy · łopatki",difficulty:"Średni",work:false,
+ {id:"thread-needle",mat:true,sides:2,name:"Thread the Needle (przeciąganie nici)",sec:75,side:"Każda strona",video:"blBC6222kuU",area:"odcinek piersiowy · łopatki",difficulty:"Średni",work:false,
   why:"Mobilizuje rotację odcinka piersiowego i otwiera barki — świetne na sztywność „między łopatkami”.",
   steps:["Klęknij na czworaka: dłonie pod barkami, kolana pod biodrami.","Unieś prawą rękę w górę i w bok, otwierając klatkę — wzrok za ręką.","Następnie „przepleć” prawą rękę pod lewą, kładąc bark i bok głowy na macie.","Wytrzymaj 2–3 s w dole, poczuj rozciągnięcie między łopatkami.","Wróć i powtórz na drugą stronę."],
   feel:"Rozciągnięcie między łopatkami i rotację w górnej części pleców.",
@@ -270,7 +283,7 @@ const EX=[
   breath:"Wdech w górze, wydech podczas przenoszenia ręki pod siebie.",
   easier:"Przenieś rękę tylko na tyle, na ile pozwala komfort — bez kładzenia barku na macie.",
   harder:"W górnej pozycji zatrzymaj 3 s i dodatkowo oprzyj dłoń za plecami."},
- {name:"Open Book (otwarta książka)",sec:75,side:"Każda strona",video:"OW6YHlxY6JI",area:"odcinek piersiowy · klatka",difficulty:"Średni",work:false,
+ {id:"open-book",mat:true,sides:2,name:"Open Book (otwarta książka)",sec:75,side:"Każda strona",video:"OW6YHlxY6JI",area:"odcinek piersiowy · klatka",difficulty:"Średni",work:false,
   why:"Otwiera klatkę piersiową i poprawia rotację odcinka piersiowego — działa na sztywność od siedzenia i zgarbionej postawy.",
   steps:["Połóż się na boku; biodra i kolana zgięte ok. 90°.","Wyciągnij ramiona przed siebie, dłonie razem.","Górną rękę otwórz w stronę sufitu i dalej za siebie, wodząc wzrokiem za dłonią.","Kolana trzymaj razem — ruch pochodzi z odcinka piersiowego.","Wytrzymaj 3–5 s na końcu, wróć i powtórz."],
   feel:"Rozciągnięcie klatki piersiowej i wyraźny ruch między łopatkami.",
@@ -279,7 +292,7 @@ const EX=[
   breath:"Wdech w otwarciu, wydech w powrocie do środka.",
   easier:"Oprzyj kolano/dłoń na poduszce, ograniczając rotację.",
   harder:"Zatrzymaj dłużej (do 10 s) i dodaj pogłębienie na wydechu."},
- {name:"Wyprost odcinka piersiowego (wałek/piłka)",sec:60,side:"2–3 miejsca na plecach",video:"H4u3J3Spcvw",area:"odcinek piersiowy · barki",difficulty:"Średni",work:false,
+ {id:"thoracic-ext",mat:true,name:"Wyprost odcinka piersiowego (wałek/piłka)",sec:60,side:"2–3 miejsca na plecach",video:"H4u3J3Spcvw",area:"odcinek piersiowy · barki",difficulty:"Średni",work:false,
   why:"Przywraca wyprost sztywnego odcinka piersiowego — kluczowe przy zaokrąglonej górnej części pleców.",
   steps:["Połóż wałek (lub piłkę) poprzecznie pod górną częścią pleców.","Podeprzyj głowę splecionymi dłońmi za karkiem, łokcie blisko siebie.","Delikatnie wykonaj wyprost grzbietu nad wałkiem — bez wyginania lędźwi.","Przesuń wałek o kilka centymetrów i powtórz w 2–3 miejscach.","Nie roluj po odcinku lędźwiowym ani po szyi."],
   feel:"Ruch i rozciągnięcie w górnej części pleców, między łopatkami.",
@@ -288,7 +301,7 @@ const EX=[
   breath:"Wdech przed wyprostem, wydech w trakcie odchylenia do tyłu.",
   easier:"Użyj zwiniętego ręcznika zamiast wałka i ogranicz zakres.",
   harder:"W każdej pozycji zatrzymaj 5 s i wykonaj kilka oddechów w rozciągnięciu."},
- {name:"Rozciąganie klatki w drzwiach",sec:60,side:"Oburamiennie",video:"CYMIdBCSIKM",area:"klatka · barki",difficulty:"Łatwy",work:true,
+ {id:"doorway-pec",mat:false,name:"Rozciąganie klatki w drzwiach",sec:60,side:"Oburamiennie",video:"CYMIdBCSIKM",area:"klatka · barki",difficulty:"Łatwy",work:true,
   why:"Otwiera przód klatki i barki po godzinach przy komputerze — wystarczą drzwi, więc pasuje też do pracy.",
   steps:["Stań w otwartych drzwiach; oprzyj przedramiona o framugę na wysokości barków.","Zrób mały krok do przodu jedną nogą.","Delikatnie przenieś ciężar do przodu, otwierając klatkę.","Utrzymuj żebra „spokojnie” — nie wyginaj lędźwi.","Wytrzymaj 30–45 s, oddychając swobodnie."],
   feel:"Wyraźne, ale komfortowe rozciągnięcie z przodu klatki i barków.",
@@ -297,7 +310,7 @@ const EX=[
   breath:"Wdech; na wydechu delikatnie pogłębiaj otwarcie klatki.",
   easier:"Zrób to na niższej wysokości (łokcie niżej) i z mniejszym krokiem.",
   harder:"Podnieś łokcie wyżej, zatrzymaj 45 s i zmieniaj wysokość ramion."},
- {name:"Rozciąganie gumy (band pull-apart)",sec:60,side:"12–15 powtórzeń",video:"stwYTTPXubo",area:"barki · łopatki · postawa",difficulty:"Średni",work:true,
+ {id:"pull-apart",mat:false,name:"Rozciąganie gumy (band pull-apart)",sec:60,side:"12–15 powtórzeń",video:"stwYTTPXubo",area:"barki · łopatki · postawa",difficulty:"Średni",work:true,
   why:"Wzmacnia mięśnie cofające łopatki — przeciwdziała zgarbionej postawie i ustawia barki do tyłu. Świetne uzupełnienie rozciągania.",
   steps:["Chwyć gumę oburącz przed sobą na wysokości barków, dłonie na szerokość barków.","Wyciągnij ramiona na wprost, łokcie niemal proste.","Rozciągnij gumę na boki, zbliżając łopatki do siebie.","Powoli i kontrolowanie wróć do początku.","Barki trzymaj nisko — nie unoś ich do uszu."],
   feel:"Napięcie między łopatkami i w górnej części pleców (to ćwiczenie wzmacniające, nie rozciągające).",
@@ -306,7 +319,7 @@ const EX=[
   breath:"Wydech przy rozciąganiu gumy, wdech przy powrocie.",
   easier:"Użyj słabszej gumy lub wykonuj ruch jedną ręką, drugą trzymając nieruchomo.",
   harder:"Użyj mocniejszej gumy, zatrzymaj 2 s w pełnym rozciągnięciu i rób ruch pod kątem (w górę/dół)."},
- {name:"Przenoszenie gumy nad głową (pass-through)",sec:60,side:"10 powolnych przejść",video:"riVxa9By-pM",area:"barki · rotacja",difficulty:"Średni",work:false,
+ {id:"pass-through",mat:false,name:"Przenoszenie gumy nad głową (pass-through)",sec:60,side:"10 powolnych przejść",video:"riVxa9By-pM",area:"barki · rotacja",difficulty:"Średni",work:false,
   why:"Poprawia mobilność obręczy barkowej — pomaga przy sztywności i „zgrzytaniu” w okolicy łopatek.",
   steps:["Chwyć gumę szeroko oburącz przed sobą.","Utrzymując proste łokcie, unieś ramiona i przenieś gumę nad głowę oraz za plecy.","Nie uginaj łokci — jeśli musisz, chwyć gumę szerzej.","Wróć tą samą drogą do przodu.","Wykonuj powoli, w zakresie bez bólu."],
   feel:"Ruch i rozciągnięcie w barkach oraz otwieranie przodu klatki.",
@@ -315,7 +328,7 @@ const EX=[
   breath:"Spokojny oddech; nie wstrzymuj powietrza.",
   easier:"Chwyć gumę bardzo szeroko albo użyj ręcznika lub kija.",
   harder:"Stopniowo zwężaj chwyt i zatrzymuj na 2 s za plecami."},
- {name:"Klęczące rozciąganie zginaczy biodra",sec:75,side:"Każda strona po 30–45 s",video:"F55tzqJggAY",area:"zginacze biodra · przód uda",difficulty:"Średni",work:false,
+ {id:"hip-flexor",mat:true,sides:2,name:"Klęczące rozciąganie zginaczy biodra",sec:75,side:"Każda strona po 30–45 s",video:"F55tzqJggAY",area:"zginacze biodra · przód uda",difficulty:"Średni",work:false,
   why:"Rozciąga zginacze biodra skrócone przez wielogodzinne siedzenie — często przyczyniają się do napięcia odcinka lędźwiowego.",
   steps:["Klęknij na jednym kolanie (podłóż coś miękkiego), druga stopa z przodu.","Napnij pośladek nogi klęczącej i delikatnie podwiń miednicę.","Utrzymując tułów pionowo, przesuń miednicę kilka centymetrów do przodu.","Trzymaj napięty pośladek — to chroni odcinek lędźwiowy.","Wytrzymaj 30–45 s i zmień stronę."],
   feel:"Rozciągnięcie z przodu biodra i górnej części uda nogi klęczącej.",
@@ -324,7 +337,7 @@ const EX=[
   breath:"Wdech; na wydechu delikatnie przesuń miednicę do przodu.",
   easier:"Trzymaj ręce na krześle dla podparcia i ogranicz przesunięcie miednicy.",
   harder:"Podnieś ramię strony rozciąganej i przechyl tułów w bok lub oprzyj stopę na podwyższeniu („couch”)."},
- {name:"90/90 Stretch (biodra)",sec:90,side:"Każda strona po 40 s",video:"t4Zz6-aG8Iw",area:"biodra · rotacja",difficulty:"Średni/Trudny",work:false,
+ {id:"hip-9090",mat:true,sides:2,name:"90/90 Stretch (biodra)",sec:90,side:"Każda strona po 40 s",video:"t4Zz6-aG8Iw",area:"biodra · rotacja",difficulty:"Średni/Trudny",work:false,
   why:"Praca nad ograniczonym zakresem rotacji biodra — dokładnie tym, co usztywnia się przy siedzeniu.",
   steps:["Usiądź na macie; jedną nogę zegnij do przodu pod kątem 90°, drugą z boku również pod 90°.","Utrzymuj klatkę wysoko i wydłuż kręgosłup.","Powoli pochyl tułów nad przednią nogą, utrzymując plecy proste.","Zatrzymaj 20–30 s, poczuj pracę w tylnej części biodra.","Zmień stronę; w razie potrzeby podeprzyj biodro poduszką."],
   feel:"Pracę w tylnej i bocznej części biodra, czasem także w środku.",
@@ -333,7 +346,7 @@ const EX=[
   breath:"Wydłużony wydech pomaga pogłębić pochylenie tułowia.",
   easier:"Podnieś biodra na poduszce (książce) i nie ustawiaj kolan idealnie w 90°.",
   harder:"Przechodź płynnie z jednej strony na drugą (hip switch), utrzymując klatkę wysoko."},
- {name:"Figure-4 / rozciąganie pośladka",sec:75,side:"Każda strona po 30–45 s",video:"2VE_NLcNMvQ",area:"pośladek · rotatory biodra",difficulty:"Łatwy",work:false,
+ {id:"figure4",mat:true,sides:2,name:"Figure-4 / rozciąganie pośladka",sec:75,side:"Każda strona po 30–45 s",video:"2VE_NLcNMvQ",area:"pośladek · rotatory biodra",difficulty:"Łatwy",work:false,
   why:"Rozciąga pośladek i głębokie rotatory biodra — pomaga przy napięciu pośladka i sztywności biodra.",
   steps:["Połóż się na plecach, nogi ugięte, stopy na macie.","Załóż kostkę jednej nogi na udo drugiej (jak „czwórka”).","Przełóż ręce za udo nogi podporowej i przyciągnij ją do klatki.","Utrzymuj stopę założonej nogi „aktywną” (palce do góry).","Wytrzymaj 30–45 s i zmień stronę."],
   feel:"Wyraźne rozciągnięcie w pośladku i tylnej części biodra.",
@@ -342,7 +355,7 @@ const EX=[
   breath:"Spokojny oddech; na wydechu delikatnie przyciągnij nogę.",
   easier:"Wykonaj na siedząco („czwórka” w krześle), pochylając się delikatnie do przodu.",
   harder:"Zatrzymaj dłużej (60 s) i dodaj delikatne, małe pogłębienia/powroty."},
- {name:"Rozciąganie dwugłowych z gumą",sec:75,side:"Każda strona po 45 s",video:"KAr101d6jHU",area:"dwugłowe uda · tylna taśma",difficulty:"Łatwy/Średni",work:false,
+ {id:"hamstring",mat:true,sides:2,name:"Rozciąganie dwugłowych z gumą",sec:75,side:"Każda strona po 45 s",video:"KAr101d6jHU",area:"dwugłowe uda · tylna taśma",difficulty:"Łatwy/Średni",work:false,
   why:"Bezpieczna praca nad sztywnością tylnej taśmy bez wymuszania skłonu kręgosłupa. To Twoja główna sztywność — dotknięcie palców przyjdzie z czasem.",
   steps:["Połóż się na plecach; założ gumę (lub ręcznik) na śródstopie jednej nogi.","Unieś nogę w górę, kolano lekko ugięte; druga noga leży wyprostowana na macie.","Delikatnie prostuj kolano do momentu wyraźnego, ale komfortowego napięcia.","Zatrzymaj 30 s; w tym czasie wykonaj 10–15 ruchów stopy (zgięcie/wyprost).","Zmień stronę."],
   feel:"Napięcie z tyłu uda (dwugłowe), bez bólu pod kolanem.",
@@ -351,7 +364,7 @@ const EX=[
   breath:"Wydłużony, spokojny wydech w trakcie rozciągania.",
   easier:"Zegnij kolano wyraźniej i zmniejsz zakres (zostaw lekki opór).",
   harder:"Wyprostuj kolano bliżej pełnego wyprostu i dodaj naprzemienne napięcia (naciśnij nogą w gumę 5 s, rozluźnij)."},
- {name:"Rozciąganie łydki przy ścianie",sec:60,side:"Każda noga po 30 s",video:"4fwN8uiF7z8",area:"łydki · kostka",difficulty:"Łatwy",work:false,
+ {id:"wall-calf",mat:false,sides:2,name:"Rozciąganie łydki przy ścianie",sec:60,side:"Każda noga po 30 s",video:"4fwN8uiF7z8",area:"łydki · kostka",difficulty:"Łatwy",work:false,
   why:"Rozluźnia łydki i poprawia ruch w kostce — ułatwia głębszy skłon i prawidłowy chód.",
   steps:["Stań twarzą do ściany; dłonie na ścianie na wysokości barków.","Cofnij jedną nogę, utrzymując jej piętę na podłodze, palce do przodu.","Przenieś ciężar do przodu, ugnij przednią nogę; poczuj rozciągnięcie łydki nogi tylnej.","Trzymaj tylną piętę na ziemi; zmień nogę.","Lekko zegnij tylną nogę, by rozciągnąć mięsień płaszczkowaty (niżej)."],
   feel:"Rozciągnięcie łydki — wyżej przy prostym kolanie, niżej przy zgiętym.",
@@ -360,7 +373,7 @@ const EX=[
   breath:"Spokojny oddech; na wydechu delikatnie przenieś ciężar do przodu.",
   easier:"Zmniejsz krok i ogranicz przesunięcie ciężaru ciała.",
   harder:"Wykonuj na krawędzi stopnia (pięta poniżej palców) i dodaj delikatne naprężenia."},
- {name:"Rozciąganie nadgarstków i przedramion",sec:45,side:"Oba kierunki, obie ręce",video:"63LEj3oP6lA",area:"nadgarstki · przedramiona",difficulty:"Łatwy",work:true,
+ {id:"wrist",mat:false,sides:2,name:"Rozciąganie nadgarstków i przedramion",sec:45,side:"Oba kierunki, obie ręce",video:"63LEj3oP6lA",area:"nadgarstki · przedramiona",difficulty:"Łatwy",work:true,
   why:"Rozciąga przedramiona i nadgarstki przeciążone pracą przy klawiaturze i myszy.",
   steps:["Wyciągnij ramię przed siebie i skieruj dłoń palcami w dół.","Drugą ręką delikatnie naciągnij palce w swoją stronę — rozciągając przednią część przedramienia.","Wytrzymaj 20–30 s.","Zmień kierunek: palce do góry, delikatny nacisk w dół — rozciągając tylną część przedramienia.","Powtórz na obu rękach."],
   feel:"Rozciągnięcie wzdłuż przedramienia — raz z przodu, raz z tyłu.",
@@ -412,7 +425,8 @@ function detailsHTML(e,k){
 
 /* ======================= STAN SESJI ======================= */
 let playlist=[], LAST=0, idx=0, left=0, dur=0, tick=null, running=false, mode='ex';
-let brk=10, sound=true, voice=true, routine='full', actx=null, wl=null;
+let brk=10, sound=true, voice=true, routine='full', noMat=false, sideSplit=true, actx=null, wl=null;
+let curSides=1, switchAt=-1, switched=false;
 
 /* dźwięk (generowany w przeglądarce, bez plików) */
 function beep(f,d,t=0){
@@ -441,11 +455,11 @@ document.addEventListener('visibilitychange',()=>{if(document.visibilityState===
 /* ======================= USTAWIENIA (zapamiętywane) ======================= */
 const root=document.documentElement;
 const SETKEY='desk-settings-v1';
-function loadSettings(){try{return Object.assign({theme:null,brk:10,sound:true,voice:true,routine:'full'},JSON.parse(localStorage.getItem(SETKEY)||'{}'))}catch(e){return{theme:null,brk:10,sound:true,voice:true,routine:'full'}}}
-function saveSettings(){try{localStorage.setItem(SETKEY,JSON.stringify({theme:theme,brk:brk,sound:sound,voice:voice,routine:routine}))}catch(e){}}
+function loadSettings(){try{return Object.assign({theme:null,brk:10,sound:true,voice:true,routine:'full',noMat:false,sideSplit:true},JSON.parse(localStorage.getItem(SETKEY)||'{}'))}catch(e){return{theme:null,brk:10,sound:true,voice:true,routine:'full',noMat:false,sideSplit:true}}}
+function saveSettings(){try{localStorage.setItem(SETKEY,JSON.stringify({theme:theme,brk:brk,sound:sound,voice:voice,routine:routine,noMat:noMat,sideSplit:sideSplit}))}catch(e){}}
 const _s=loadSettings();
 let theme=_s.theme||((matchMedia&&matchMedia('(prefers-color-scheme:dark)').matches)?'dark':'light');
-brk=_s.brk; sound=_s.sound; voice=_s.voice; routine=_s.routine;
+brk=_s.brk; sound=_s.sound; voice=_s.voice; routine=_s.routine; noMat=_s.noMat; sideSplit=_s.sideSplit;
 function applyTheme(t){root.dataset.theme=t;$('theme').textContent=t==='dark'?'☀️':'🌙';}
 applyTheme(theme);
 $('theme').onclick=()=>{theme=theme==='dark'?'light':'dark';applyTheme(theme);saveSettings()};
@@ -480,13 +494,27 @@ function intro(){
   $('intro').textContent=`${n} ćwiczeń, około ${Math.ceil(sec/60)} min${brk?" (z przerwami)":""}. Znajdź miejsce, w którym możesz się swobodnie ruszać.`;
 }
 function renderList(){
+  if(!playlist.length){
+    $('list').innerHTML='<li style="grid-column:1/-1"><span>Brak ćwiczeń dla tego zestawu. Zmień zakres albo wyłącz „🚫 Bez maty”.</span></li>';
+    $('go').disabled=true; return;
+  }
+  $('go').disabled=false;
   $('list').innerHTML=playlist.map((e,k)=>`<li><span class="n">${k+1}</span><span><span class="name">${e.name}</span><span class="sub">${e.side}</span></span><span class="t">${e.sec} s</span></li>`).join('');
 }
-function setRoutine(r){
-  playlist = r==='work' ? EX.filter(e=>e.work) : EX.slice();
-  LAST=playlist.length-1;
-  renderList(); intro();
+const ROUTINES={
+  full:null,
+  work:e=>e.work,
+  neck:e=>['chin-tuck','neck-rom','upper-trap','levator','thread-needle'].includes(e.id),
+  thorax:e=>['cat-cow','thread-needle','open-book','thoracic-ext','doorway-pec','pull-apart','pass-through'].includes(e.id),
+  hips:e=>['hip-flexor','hip-9090','figure4','hamstring'].includes(e.id)
+};
+function buildPlaylist(){
+  const pred=ROUTINES[routine];
+  let base=pred?EX.filter(pred):EX.slice();
+  if(noMat) base=base.filter(e=>!e.mat);
+  playlist=base; LAST=playlist.length-1;
 }
+function setRoutine(r){ routine=r; buildPlaylist(); renderList(); intro(); }
 function seg(id,fn){
   $(id).onclick=e=>{const b=e.target.closest('button');if(!b)return;
     [...$(id).children].forEach(x=>x.setAttribute('aria-pressed',String(x===b)));fn(b)};
@@ -495,10 +523,14 @@ seg('rt',b=>{if(!$('run').hidden)return;routine=b.dataset.r;setRoutine(routine);
 seg('brk',b=>{brk=+b.dataset.s;intro();saveSettings()});
 seg('voc',b=>{voice=b.dataset.v==='1';if(voice)say('Głos włączony');else hush();saveSettings()});
 seg('snd',b=>{sound=b.dataset.v==='1';if(actx===null&&sound)actx=new (window.AudioContext||window.webkitAudioContext)();snd.tick();saveSettings()});
+seg('mat',b=>{noMat=b.dataset.m==='1';setRoutine(routine);saveSettings()});
+seg('sides',b=>{sideSplit=b.dataset.v==='1';saveSettings()});
 $('details').innerHTML=EX.map((e,k)=>detailsHTML(e,k+1)).join('');
 setSeg('brk','s',String(brk));
 setSeg('snd','v',sound?'1':'0');
 setSeg('voc','v',voice?'1':'0');
+setSeg('mat','m',noMat?'1':'0');
+setSeg('sides','v',sideSplit?'1':'0');
 setSeg('rt','r',routine);
 setRoutine(routine);
 renderStats();
@@ -514,8 +546,12 @@ function load(k,m='ex',auto=false){
   stop();idx=k;mode=m;const e=playlist[idx],br=m!=='ex',pr=m==='pr';
   dur=left=pr?3:br?brk:e.sec;
   if(br&&brk<=0&&m==='br'){return start()}
+  curSides=e.sides||1;
+  switchAt=(sideSplit&&m==='ex'&&curSides===2)?dur-Math.floor(dur/2):-1;
+  switched=false;
+  const sideTag=(switchAt>0)?' · strona 1/2':'';
   $('run').classList.toggle('isbreak',br);
-  $('hint').textContent=pr?"Start za chwilę":br?"Przerwa":e.side;
+  $('hint').textContent=pr?"Start za chwilę":br?"Przerwa":(e.side+sideTag);
   $('name').textContent=pr?"Przygotuj się":br?"Odpocznij":e.name;
   $('chips').innerHTML=(br||pr)?"":`<span class="chip">${e.area}</span><span class="chip">🎚️ ${e.difficulty}</span>`;
   $('desc').textContent=pr?("Pierwsze ćwiczenie: "+e.name+". "+e.why):br?("Następne: "+e.name+". "+e.why):e.why;
@@ -537,6 +573,7 @@ function start(){
   tick=setInterval(()=>{
     left--;draw();
     if(left>0&&left<=3)snd.tick();
+    if(mode==='ex'&&switchAt>0&&!switched&&left===switchAt&&left>0){switched=true;snd.go();if(navigator.vibrate)navigator.vibrate([200,100,200]);$('hint').textContent=(playlist[idx].side||'')+' · strona 2/2';say('Zmień stronę')}
     if(left>0)return;
     stop();
     if(mode!=='ex'){snd.go();load(idx,'ex',true);return}      // koniec przerwy → startuje ćwiczenie

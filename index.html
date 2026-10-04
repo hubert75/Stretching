@@ -10,6 +10,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧘</text></svg>">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Rozciąganie">
 <style>
 :root{
   --bg:#eaf1ef;--card:#fff;--ink:#10302f;--mute:#5a7371;--line:#cfdcd9;--ring:#1f8a7a;--sun:#f4b63f;--sunink:#3a2a00;--track:#d5e3e0;
@@ -155,6 +161,11 @@ details.acc[open]>summary::after{content:"－"}
       <div class="seg" id="sides">
         <button data-v="1" aria-pressed="true">Włączony</button>
         <button data-v="0" aria-pressed="false">Wyłączony</button>
+      </div></div>
+    <div><div class="lbl">Tryb hands-free (bez dotykania)</div>
+      <div class="seg" id="hf">
+        <button data-v="0" aria-pressed="true">Wyłączony</button>
+        <button data-v="1" aria-pressed="false">Włączony</button>
       </div></div>
     <div><div class="lbl">Przerwa między ćwiczeniami</div>
       <div class="seg" id="brk">
@@ -425,7 +436,7 @@ function detailsHTML(e,k){
 
 /* ======================= STAN SESJI ======================= */
 let playlist=[], LAST=0, idx=0, left=0, dur=0, tick=null, running=false, mode='ex';
-let brk=10, sound=true, voice=true, routine='full', noMat=false, sideSplit=true, actx=null, wl=null;
+let brk=10, sound=true, voice=true, routine='full', noMat=false, sideSplit=true, handsFree=false, actx=null, wl=null;
 let curSides=1, switchAt=-1, switched=false;
 
 /* dźwięk (generowany w przeglądarce, bez plików) */
@@ -455,11 +466,11 @@ document.addEventListener('visibilitychange',()=>{if(document.visibilityState===
 /* ======================= USTAWIENIA (zapamiętywane) ======================= */
 const root=document.documentElement;
 const SETKEY='desk-settings-v1';
-function loadSettings(){try{return Object.assign({theme:null,brk:10,sound:true,voice:true,routine:'full',noMat:false,sideSplit:true},JSON.parse(localStorage.getItem(SETKEY)||'{}'))}catch(e){return{theme:null,brk:10,sound:true,voice:true,routine:'full',noMat:false,sideSplit:true}}}
-function saveSettings(){try{localStorage.setItem(SETKEY,JSON.stringify({theme:theme,brk:brk,sound:sound,voice:voice,routine:routine,noMat:noMat,sideSplit:sideSplit}))}catch(e){}}
+function loadSettings(){try{return Object.assign({theme:null,brk:10,sound:true,voice:true,routine:'full',noMat:false,sideSplit:true,handsFree:false},JSON.parse(localStorage.getItem(SETKEY)||'{}'))}catch(e){return{theme:null,brk:10,sound:true,voice:true,routine:'full',noMat:false,sideSplit:true,handsFree:false}}}
+function saveSettings(){try{localStorage.setItem(SETKEY,JSON.stringify({theme:theme,brk:brk,sound:sound,voice:voice,routine:routine,noMat:noMat,sideSplit:sideSplit,handsFree:handsFree}))}catch(e){}}
 const _s=loadSettings();
 let theme=_s.theme||((matchMedia&&matchMedia('(prefers-color-scheme:dark)').matches)?'dark':'light');
-brk=_s.brk; sound=_s.sound; voice=_s.voice; routine=_s.routine; noMat=_s.noMat; sideSplit=_s.sideSplit;
+brk=_s.brk; sound=_s.sound; voice=_s.voice; routine=_s.routine; noMat=_s.noMat; sideSplit=_s.sideSplit; handsFree=_s.handsFree;
 function applyTheme(t){root.dataset.theme=t;$('theme').textContent=t==='dark'?'☀️':'🌙';}
 applyTheme(theme);
 $('theme').onclick=()=>{theme=theme==='dark'?'light':'dark';applyTheme(theme);saveSettings()};
@@ -490,8 +501,8 @@ function renderStats(){
 /* ======================= START ======================= */
 function intro(){
   const n=playlist.length;
-  const sec=playlist.reduce((a,e)=>a+e.sec,0)+brk*Math.max(0,n-1)+3;
-  $('intro').textContent=`${n} ćwiczeń, około ${Math.ceil(sec/60)} min${brk?" (z przerwami)":""}. Znajdź miejsce, w którym możesz się swobodnie ruszać.`;
+  const sec=playlist.reduce((a,e)=>a+e.sec,0)+brk*Math.max(0,n-1)+(handsFree?n*10:3);
+  $('intro').textContent=`${n} ćwiczeń, około ${Math.ceil(sec/60)} min${handsFree?" · tryb hands-free":brk?" (z przerwami)":""}. Znajdź miejsce, w którym możesz się swobodnie ruszać.`;
 }
 function renderList(){
   if(!playlist.length){
@@ -525,12 +536,14 @@ seg('voc',b=>{voice=b.dataset.v==='1';if(voice)say('Głos włączony');else hush
 seg('snd',b=>{sound=b.dataset.v==='1';if(actx===null&&sound)actx=new (window.AudioContext||window.webkitAudioContext)();snd.tick();saveSettings()});
 seg('mat',b=>{noMat=b.dataset.m==='1';setRoutine(routine);saveSettings()});
 seg('sides',b=>{sideSplit=b.dataset.v==='1';saveSettings()});
+seg('hf',b=>{handsFree=b.dataset.v==='1';intro();saveSettings()});
 $('details').innerHTML=EX.map((e,k)=>detailsHTML(e,k+1)).join('');
 setSeg('brk','s',String(brk));
 setSeg('snd','v',sound?'1':'0');
 setSeg('voc','v',voice?'1':'0');
 setSeg('mat','m',noMat?'1':'0');
 setSeg('sides','v',sideSplit?'1':'0');
+setSeg('hf','v',handsFree?'1':'0');
 setSeg('rt','r',routine);
 setRoutine(routine);
 renderStats();
@@ -544,7 +557,7 @@ function stop(){clearInterval(tick);running=false}
 
 function load(k,m='ex',auto=false){
   stop();idx=k;mode=m;const e=playlist[idx],br=m!=='ex',pr=m==='pr';
-  dur=left=pr?3:br?brk:e.sec;
+  dur=left=pr?(handsFree?10:3):br?brk:e.sec;
   if(br&&brk<=0&&m==='br'){return start()}
   curSides=e.sides||1;
   switchAt=(sideSplit&&m==='ex'&&curSides===2)?dur-Math.floor(dur/2):-1;
@@ -564,7 +577,7 @@ function load(k,m='ex',auto=false){
   $('video').innerHTML=videoHTML(e);
   $('toggle').textContent="Start";
   draw();
-  say(pr?"Przygotuj się. Pierwsze ćwiczenie: "+e.name:br?"Przerwa. Następne: "+e.name:e.name+(e.side?". "+e.side:""),auto?1000:0);
+  say(pr?("Przygotuj się. "+e.name+(e.side?". "+e.side:"")):br?("Przerwa. Następne: "+e.name):(e.name+(e.side?". "+e.side:"")),auto?1000:0);
   if(auto)start();
 }
 function start(){
@@ -573,12 +586,16 @@ function start(){
   tick=setInterval(()=>{
     left--;draw();
     if(left>0&&left<=3)snd.tick();
+    if(handsFree&&mode!=='ex'&&left>0&&left<=3)say(["trzy","dwa","jeden"][3-left],0);
     if(mode==='ex'&&switchAt>0&&!switched&&left===switchAt&&left>0){switched=true;snd.go();if(navigator.vibrate)navigator.vibrate([200,100,200]);$('hint').textContent=(playlist[idx].side||'')+' · strona 2/2';say('Zmień stronę')}
     if(left>0)return;
     stop();
-    if(mode!=='ex'){snd.go();load(idx,'ex',true);return}      // koniec przerwy → startuje ćwiczenie
+    if(mode!=='ex'){snd.go();if(mode==='br'&&handsFree)load(idx,'pr',true);else load(idx,'ex',true);return} // koniec przygotowania/przerwy
     snd.end();
-    if(idx<LAST&&brk>0){load(idx+1,'br',true);return}         // przerwa automatycznie
+    if(idx<LAST&&(brk>0||handsFree)){                          // auto: dalej (hands-free zawsze)
+      if(brk>0)load(idx+1,'br',true);else load(idx+1,'pr',true);
+      return;
+    }
     $('toggle').textContent="Jeszcze raz";$('next').classList.add('pulse');
     if(navigator.vibrate)navigator.vibrate(200);
   },1000);
@@ -617,6 +634,11 @@ if(IS_FILE){
   $('start').insertBefore(b,$('list'));
 }
 show('start');
+
+/* PWA: rejestracja service workera (offline + instalacja). */
+if('serviceWorker' in navigator && location.protocol!=='file:'){
+  window.addEventListener('load',()=>navigator.serviceWorker.register('service-worker.js').catch(()=>{}));
+}
 </script>
 </body>
 </html>

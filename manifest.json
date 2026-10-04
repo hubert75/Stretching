@@ -1,0 +1,20 @@
+{
+  "name": "Sesja rozciągania – mobilność po pracy",
+  "short_name": "Rozciąganie",
+  "description": "Prowadzona sesja rozciągania i mobilności dla osoby pracującej przy biurku: szyja, kark, odcinek piersiowy, biodra, tylna taśma, nadgarstki.",
+  "lang": "pl",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#eaf1ef",
+  "theme_color": "#1f8a7a",
+  "categories": ["health", "fitness", "lifestyle"],
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

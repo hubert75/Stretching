@@ -83,6 +83,16 @@ details.acc[open]>summary::after{content:"－"}
 .yt{display:inline-block;background:var(--ink);color:var(--bg);text-decoration:none;font-weight:700;padding:14px 26px;border-radius:14px}
 .notice{background:var(--warnbg);border-left:5px solid var(--sun);padding:14px 16px;border-radius:12px;margin:14px 0;color:var(--warnink)}
 .tip{margin:22px 0 0;color:var(--mute);font-size:17px}
+.stats{background:var(--card);border-radius:18px;padding:18px 20px;margin:0 0 24px;display:flex;flex-wrap:wrap;gap:20px 26px;align-items:center}
+.stat{display:flex;flex-direction:column;line-height:1.1}
+.stat b{font-size:34px;font-weight:700;color:var(--ring)}
+.stat span{font-size:15px;color:var(--mute)}
+.week{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+.wd{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-size:14px;font-weight:600;background:var(--track);color:var(--mute)}
+.wd.on{background:var(--ring);color:#03110f}
+.wd.today{outline:2px solid var(--ring);outline-offset:2px}
+.resetlink{background:none;border:0;color:var(--mute);text-decoration:underline;font-size:15px;padding:6px 0;cursor:pointer;flex:1 0 100%;text-align:left}
+@media (max-width:680px){.stats{gap:16px 22px}.week{margin-left:0;width:100%}.wd{width:34px;height:34px;font-size:13px}.stat b{font-size:28px}}
 
 /* session */
 .top{display:flex;align-items:center;gap:20px;margin-bottom:22px}
@@ -124,6 +134,8 @@ details.acc[open]>summary::after{content:"－"}
   <p class="brand">🧘 Mobilność po pracy</p>
   <h1>Sesja rozciągania</h1>
   <p class="mute" id="intro"></p>
+
+  <div class="stats" id="stats"></div>
 
   <div class="settings">
     <div><div class="lbl">Zakres sesji</div>
@@ -400,7 +412,7 @@ function detailsHTML(e,k){
 
 /* ======================= STAN SESJI ======================= */
 let playlist=[], LAST=0, idx=0, left=0, dur=0, tick=null, running=false, mode='ex';
-let brk=10, sound=true, voice=true, actx=null, wl=null;
+let brk=10, sound=true, voice=true, routine='full', actx=null, wl=null;
 
 /* dźwięk (generowany w przeglądarce, bez plików) */
 function beep(f,d,t=0){
@@ -426,12 +438,40 @@ async function lock(){try{if('wakeLock' in navigator&&!wl)wl=await navigator.wak
 function unlock(){try{wl&&wl.release()}catch(e){}wl=null}
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&!$('run').hidden)lock()});
 
-/* motyw */
+/* ======================= USTAWIENIA (zapamiętywane) ======================= */
 const root=document.documentElement;
+const SETKEY='desk-settings-v1';
+function loadSettings(){try{return Object.assign({theme:null,brk:10,sound:true,voice:true,routine:'full'},JSON.parse(localStorage.getItem(SETKEY)||'{}'))}catch(e){return{theme:null,brk:10,sound:true,voice:true,routine:'full'}}}
+function saveSettings(){try{localStorage.setItem(SETKEY,JSON.stringify({theme:theme,brk:brk,sound:sound,voice:voice,routine:routine}))}catch(e){}}
+const _s=loadSettings();
+let theme=_s.theme||((matchMedia&&matchMedia('(prefers-color-scheme:dark)').matches)?'dark':'light');
+brk=_s.brk; sound=_s.sound; voice=_s.voice; routine=_s.routine;
 function applyTheme(t){root.dataset.theme=t;$('theme').textContent=t==='dark'?'☀️':'🌙';}
-let theme=localStorage.getItem('desk-theme')||((matchMedia&&matchMedia('(prefers-color-scheme:dark)').matches)?'dark':'light');
 applyTheme(theme);
-$('theme').onclick=()=>{theme=theme==='dark'?'light':'dark';localStorage.setItem('desk-theme',theme);applyTheme(theme)};
+$('theme').onclick=()=>{theme=theme==='dark'?'light':'dark';applyTheme(theme);saveSettings()};
+function setSeg(id,attr,val){[...$(id).children].forEach(b=>b.setAttribute('aria-pressed',String(b.dataset[attr]===val)))}
+
+/* ======================= DZIENNIK / STREAK ======================= */
+const LOGKEY='desk-log-v1';
+let log=[];try{log=JSON.parse(localStorage.getItem(LOGKEY)||'[]')}catch(e){log=[]}
+function dayKey(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function todayKey(){return dayKey(new Date())}
+function recordSession(){const k=todayKey();if(!log.includes(k))log.push(k);log.sort();log=log.slice(-400);try{localStorage.setItem(LOGKEY,JSON.stringify(log))}catch(e){}}
+function weekDates(){const now=new Date();const off=(now.getDay()+6)%7;const mon=new Date(now);mon.setDate(now.getDate()-off);mon.setHours(0,0,0,0);const a=[];for(let i=0;i<7;i++){const d=new Date(mon);d.setDate(mon.getDate()+i);a.push(d)}return a}
+function sessionsThisWeek(){const set=new Set(log);return weekDates().filter(d=>set.has(dayKey(d))).length}
+function currentStreak(){const set=new Set(log);const d=new Date();d.setHours(0,0,0,0);if(!set.has(dayKey(d)))d.setDate(d.getDate()-1);let n=0;while(set.has(dayKey(d))){n++;d.setDate(d.getDate()-1)}return n}
+function streakLabel(n){return n===1?'dzień z rzędu':'dni z rzędu'}
+function renderStats(){
+  const set=new Set(log),L=['Pn','Wt','Śr','Cz','Pt','So','Nd'];
+  const week=weekDates().map(d=>{const on=set.has(dayKey(d)),i=(d.getDay()+6)%7,t=dayKey(d)===todayKey();return `<span class="wd${on?' on':''}${t?' today':''}">${L[i]}</span>`}).join('');
+  const wk=sessionsThisWeek(),st=currentStreak();
+  $('stats').innerHTML=`<div class="stat"><b>${wk}</b><span>z 3 sesji w tym tygodniu</span></div>`+
+    `<div class="stat"><b>${st}</b><span>${streakLabel(st)}</span></div>`+
+    `<div class="stat"><b>${log.length}</b><span>sesji łącznie</span></div>`+
+    `<div class="week">${week}</div>`+
+    `<button class="resetlink" id="resetlog" type="button">↺ Wyczyść dziennik</button>`;
+  $('resetlog').onclick=()=>{if(confirm('Usunąć całą historię sesji i streak?')){log=[];try{localStorage.removeItem(LOGKEY)}catch(e){}renderStats()}};
+}
 
 /* ======================= START ======================= */
 function intro(){
@@ -451,12 +491,17 @@ function seg(id,fn){
   $(id).onclick=e=>{const b=e.target.closest('button');if(!b)return;
     [...$(id).children].forEach(x=>x.setAttribute('aria-pressed',String(x===b)));fn(b)};
 }
-seg('rt',b=>{if(!$('run').hidden)return;setRoutine(b.dataset.r)});
-seg('brk',b=>{brk=+b.dataset.s;intro()});
-seg('voc',b=>{voice=b.dataset.v==='1';if(voice)say('Głos włączony');else hush()});
-seg('snd',b=>{sound=b.dataset.v==='1';if(actx===null&&sound)actx=new (window.AudioContext||window.webkitAudioContext)();snd.tick()});
+seg('rt',b=>{if(!$('run').hidden)return;routine=b.dataset.r;setRoutine(routine);saveSettings()});
+seg('brk',b=>{brk=+b.dataset.s;intro();saveSettings()});
+seg('voc',b=>{voice=b.dataset.v==='1';if(voice)say('Głos włączony');else hush();saveSettings()});
+seg('snd',b=>{sound=b.dataset.v==='1';if(actx===null&&sound)actx=new (window.AudioContext||window.webkitAudioContext)();snd.tick();saveSettings()});
 $('details').innerHTML=EX.map((e,k)=>detailsHTML(e,k+1)).join('');
-setRoutine('full');
+setSeg('brk','s',String(brk));
+setSeg('snd','v',sound?'1':'0');
+setSeg('voc','v',voice?'1':'0');
+setSeg('rt','r',routine);
+setRoutine(routine);
+renderStats();
 
 /* ======================= EKRANY / TIMER ======================= */
 const C=2*Math.PI*76;
@@ -505,7 +550,10 @@ $('toggle').onclick=()=>{ if(running){stop();$('toggle').textContent="Wznów"} e
 $('next').onclick=()=>{
   if(mode!=='ex'){snd.go();load(idx,'ex',true)}
   else if(idx<LAST)load(idx+1);
-  else{stop();$('summary').textContent="Zrobiłeś wszystkie "+playlist.length+" ćwiczeń. Dobra robota!";snd.end();say("Koniec sesji. Dobra robota!",1000);unlock();show('end')}
+  else{stop();recordSession();renderStats();
+    const wk=sessionsThisWeek(),st=currentStreak();
+    $('summary').textContent="Ukończyłeś "+playlist.length+" ćwiczeń. W tym tygodniu: "+wk+"/3 · "+st+" "+streakLabel(st)+" · "+log.length+" sesji łącznie.";
+    snd.end();say("Koniec sesji. W tym tygodniu "+wk+" z 3. Dobra robota!",1000);unlock();show('end')}
 };
 $('prev').onclick=()=>{if(idx>0)load(idx-1)};
 $('quit').onclick=()=>{stop();hush();unlock();show('start')};

@@ -1,725 +1,537 @@
-<!doctype html>
-<html lang="pl">
+<!DOCTYPE html>
+<html lang="pl" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#1e1b4b">
-<meta name="description" content="20-minutowy trening mobilności i stretchingu dla osoby pracującej przy biurku: szyja, kark, odcinek piersiowy, biodra, tylna taśma, nadgarstki.">
-<title>Desk Reset — 20-minutowy trening mobilności</title>
+<meta name="theme-color" content="#1f8a7a">
+<meta name="description" content="Prowadzona sesja rozciągania i mobilności dla osoby pracującej przy biurku: szyja, kark, odcinek piersiowy, biodra, tylna taśma, nadgarstki.">
+<title>Sesja rozciągania – mobilność po pracy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧘</text></svg>">
 <style>
-*{box-sizing:border-box}
 :root{
-  --bg:#eef1f8;--card:#fff;--ink:#1b2334;--muted:#5b6b86;--border:#e3e8f2;
-  --accent:#4f46e5;--accent2:#0ea5e9;
-  --ok:#e7f9ef;--okb:#12b76a;--warn:#fff4e0;--warnb:#f79009;--bad:#fdeaea;--badb:#ef4444;
-  --shadow:0 10px 30px rgba(28,41,80,.08);
+  --bg:#eaf1ef;--card:#fff;--ink:#10302f;--mute:#5a7371;--line:#cfdcd9;--ring:#1f8a7a;--sun:#f4b63f;--sunink:#3a2a00;--track:#d5e3e0;
+  --okbg:#e6f6ef;--okink:#0c6b4b;--badbg:#fdedec;--badink:#b0271f;--warnbg:#fff6e3;--warnink:#95610a;--infobg:#eaf1ff;--infoink:#26479a;--varybg:#f1ecff;--varyink:#5938b6;
 }
-html{scroll-behavior:smooth}
-body{margin:0;background:linear-gradient(180deg,#eef1f8,#f7f9fd 320px);color:var(--ink);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.55;-webkit-text-size-adjust:100%}
-.wrap{max-width:1000px;margin:0 auto;padding:0 16px}
-header.site-head{background:linear-gradient(135deg,#1e1b4b,#4338ca 55%,#0ea5e9);color:#fff;padding:30px 0 28px}
-.brand{font-weight:800;letter-spacing:.16em;font-size:12px;opacity:.85;text-transform:uppercase}
-h1{font-size:clamp(26px,6vw,42px);line-height:1.08;margin:8px 0 10px;font-weight:800}
-.lead{margin:0;color:#dfe5ff;max-width:64ch}
-.statbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
-.stat{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);padding:10px 14px;border-radius:14px;font-weight:600;font-size:13px}
-.stat b{font-size:20px}
-.toolbar{position:sticky;top:0;z-index:30;background:rgba(247,249,253,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
-.toolbar-inner{display:flex;align-items:center;gap:12px;padding:10px 16px;flex-wrap:wrap;max-width:1000px;margin:0 auto}
-.progress{height:10px;background:#dde3f0;border-radius:999px;overflow:hidden;flex:1 1 160px;min-width:130px}
-.bar{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s}
-.pcount{font-weight:800;font-size:14px;color:var(--muted);white-space:nowrap}
-.chips{display:flex;gap:8px;overflow-x:auto;padding:2px 0;flex:1 1 100%;-webkit-overflow-scrolling:touch}
-.chip{border:1px solid var(--border);background:#fff;color:#3b4665;border-radius:999px;padding:8px 14px;font-weight:700;font-size:13px;white-space:nowrap;cursor:pointer;transition:.15s}
-.chip:hover{border-color:var(--accent)}
-.chip.active{background:var(--accent);border-color:var(--accent);color:#fff}
-main{padding:20px 0 30px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow);padding:22px;margin:0 0 18px}
-h2.sec-title{display:flex;align-items:center;gap:10px;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:28px 0 12px;font-weight:800}
-h2.sec-title .dot{width:13px;height:13px;border-radius:4px;background:var(--sec,#4f46e5);flex:0 0 auto}
-.exercise{background:#fff;border:1px solid var(--border);border-left:6px solid var(--sec,#4f46e5);border-radius:20px;box-shadow:var(--shadow);padding:20px;margin:0 0 16px;scroll-margin-top:90px;transition:opacity .2s}
-.exercise.done{opacity:.6}
-.exercise.timeup{animation:flash 1.4s ease}
-@keyframes flash{0%{box-shadow:0 0 0 0 rgba(18,183,106,0)}30%{box-shadow:0 0 0 7px rgba(18,183,106,.35);border-color:var(--okb)}100%{box-shadow:0 0 0 0 rgba(18,183,106,0)}}
-.ex-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
-.num{font-size:11px;font-weight:800;letter-spacing:.1em;color:var(--sec,#4f46e5);text-transform:uppercase}
-h3{margin:4px 0 8px;font-size:23px;line-height:1.15}
-.tags{display:flex;flex-wrap:wrap;gap:6px}
-.tag{font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:#eef1f8;color:#3b4665}
-.tag.area{color:var(--sec,#4f46e5)}
-.timer{text-align:center;flex:0 0 auto}
-.tval{font-size:28px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1;color:var(--ink)}
-.tbtns{display:flex;gap:6px;margin-top:8px;justify-content:center}
-.tbtn{border:1px solid var(--border);background:#f6f8fd;border-radius:10px;min-width:40px;height:36px;font-size:15px;cursor:pointer;color:var(--ink)}
-.tbtn.play{background:var(--accent);color:#fff;border-color:var(--accent)}
-.why{margin:14px 0;color:#2b3448;font-size:15.5px}
-.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-h4{margin:0 0 8px;font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
-ol,ul{margin:0;padding-left:18px}
-li{margin:5px 0}
-.box{border-radius:14px;padding:12px 14px;margin-bottom:10px;font-size:14.5px}
-.box h5{margin:0 0 5px;font-size:12.5px;text-transform:uppercase;letter-spacing:.04em}
-.box p{margin:0}
-.feel{background:var(--ok);border:1px solid #c7efd9}.feel h5{color:#0a7a48}
-.avoid{background:var(--bad);border:1px solid #f7cfcf}.avoid h5{color:#c0271f}
-.mistakes{background:#fff8ec;border:1px solid #f6e0b8}.mistakes h5{color:#a35a00}
-.breath{background:#eef4ff;border:1px solid #d3e0ff}.breath h5{color:#2b53c0}
-.vary{background:#f4f0ff;border:1px solid #e0d7ff}.vary h5{color:#6d43c8}
-.vary p+p{margin-top:6px}
-.video-wrap{margin-top:14px;border-top:1px solid var(--border);padding-top:14px}
-.video{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#0b1020;cursor:pointer}
-.video img{width:100%;height:100%;object-fit:cover;display:block;opacity:.85;transition:.2s}
-.video:hover img{opacity:1}
-.video.loaded{cursor:default;background:#000}
-.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.playicon{position:absolute;inset:0;display:grid;place-items:center}
-.playicon::before{content:"▶";display:grid;place-items:center;width:72px;height:72px;border-radius:50%;
-  background:rgba(15,20,40,.6);border:2px solid rgba(255,255,255,.9);color:#fff;font-size:26px;text-indent:4px;box-shadow:0 8px 24px rgba(0,0,0,.35)}
-.yt-btn{display:block;text-align:center;margin-top:10px;background:#0f1424;color:#fff;text-decoration:none;font-weight:800;padding:12px;border-radius:12px;font-size:14px}
-.yt-btn:hover{background:#1d2740}
-.vsrc{font-size:12px;color:var(--muted);margin:8px 0 0}
-.video.fileblock{cursor:default}
-.video.fileblock img{opacity:.55}
-.vfallback{margin-top:10px;background:#fff4e0;border-left:5px solid var(--warnb);padding:12px 14px;border-radius:12px;font-size:13.5px;color:#3b4665}
-.filebanner{background:#fff4e0;border:1px solid #f6c56b;border-left:6px solid var(--warnb);padding:14px 16px;border-radius:14px;margin:0 0 16px;font-size:14px}
-.filebanner code{background:#fff0d6;padding:1px 6px;border-radius:6px}
-.complete{margin-top:16px;width:100%;padding:14px;border-radius:14px;border:2px solid var(--accent);background:#fff;color:var(--accent);font-weight:800;font-size:16px;cursor:pointer;transition:.15s}
-.complete:hover{background:#f2f0ff}
-.exercise.done .complete{background:var(--okb);border-color:var(--okb);color:#fff}
-.notice{background:var(--warn);border-left:5px solid var(--warnb);padding:13px 15px;border-radius:12px;margin-top:14px}
-.note{background:#eef4ff;border-left:5px solid var(--accent2);padding:12px 15px;border-radius:12px;margin:14px 0}
-.grid-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-top:14px}
-.step-mini{background:#f6f8fd;border:1px solid var(--border);border-radius:12px;padding:12px 14px;font-size:14px}
-.step-mini b{display:block;color:var(--accent);margin-bottom:2px}
-footer{max-width:1000px;margin:0 auto;padding:0 16px 60px;color:var(--muted);font-size:13px}
-.hide{display:none!important}
-@media(max-width:760px){.cols{grid-template-columns:1fr}.ex-head{gap:10px}h3{font-size:20px}.tval{font-size:24px}.card,.exercise{padding:17px}}
-@media print{.toolbar,.video,.yt-btn,.tbtn,.complete,.chips{display:none}.exercise{break-inside:avoid;box-shadow:none}}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0e1f1f;--card:#16302f;--ink:#e8f3f1;--mute:#9bb7b3;--line:#27494780;--ring:#46c2ae;--track:#27494780;
+  --okbg:#123528;--okink:#7ee0b7;--badbg:#3a1c1c;--badink:#ff9c94;--warnbg:#3a2f14;--warnink:#ffcf7a;--infobg:#172743;--infoink:#a9c4ff;--varybg:#241f43;--varyink:#c3b2ff;
+}}
+:root[data-theme="dark"]{
+  --bg:#0e1f1f;--card:#16302f;--ink:#e8f3f1;--mute:#9bb7b3;--line:#27494780;--ring:#46c2ae;--track:#27494780;
+  --okbg:#123528;--okink:#7ee0b7;--badbg:#3a1c1c;--badink:#ff9c94;--warnbg:#3a2f14;--warnink:#ffcf7a;--infobg:#172743;--infoink:#a9c4ff;--varybg:#241f43;--varyink:#c3b2ff;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Lexend',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:20px;line-height:1.55;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:4px solid var(--sun);outline-offset:3px}
+a{color:var(--ring)}
+.wrap{max-width:1180px;margin:0 auto;padding:calc(24px + env(safe-area-inset-top,0px)) 28px calc(44px + env(safe-area-inset-bottom,0px))}
+.screen[hidden]{display:none}
+h1{font-size:clamp(34px,5vw,52px);line-height:1.1;margin:0 0 12px;font-weight:700;letter-spacing:-.01em}
+h2{font-size:clamp(26px,4vw,40px);line-height:1.15;margin:0 0 12px;font-weight:700}
+p{margin:0 0 16px;max-width:62ch}
+.mute{color:var(--mute)}
+
+.tbtn{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));right:14px;z-index:50;width:54px;height:54px;border-radius:50%;border:2px solid var(--line);background:var(--card);font-size:22px;display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.12)}
+.brand{font-weight:700;letter-spacing:.02em;color:var(--mute);margin:0 0 6px}
+
+.btn{min-height:68px;padding:0 34px;border-radius:20px;border:2px solid var(--line);background:var(--card);font-weight:500;font-size:22px}
+.btn.main{background:var(--sun);border-color:var(--sun);color:var(--sunink);font-weight:700}
+.btn.big{min-height:84px;font-size:26px;padding:0 48px}
+.btn:disabled{opacity:.4;cursor:default}
+.btn.pulse{animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 12px rgba(244,182,63,.35)}}
+@media (prefers-reduced-motion:reduce){.btn.pulse{animation:none}}
+
+/* start */
+.list{list-style:none;margin:28px 0 36px;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.list li{background:var(--card);border-radius:18px;padding:16px 20px;display:flex;gap:16px;align-items:center}
+.list .n{flex:none;width:44px;height:44px;border-radius:50%;background:var(--track);display:grid;place-items:center;font-weight:700}
+.list .name{font-weight:500}
+.list .sub{display:block;font-size:16px;color:var(--mute);font-weight:400}
+.list .t{margin-left:auto;color:var(--mute);white-space:nowrap}
+.settings{display:grid;gap:22px;margin:0 0 34px}
+.lbl{font-weight:500;margin-bottom:10px}
+.seg{display:flex;gap:10px;flex-wrap:wrap}
+.seg button{min-height:64px;padding:0 26px;border-radius:18px;border:2px solid var(--line);background:var(--card);font-size:20px}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink);font-weight:700}
+.go-row{margin:0 0 30px}
+
+/* details / instructions */
+details.acc{background:var(--card);border-radius:18px;padding:4px 20px;margin:10px 0;border:1px solid var(--line)}
+details.acc>summary{cursor:pointer;font-weight:700;padding:16px 0;font-size:20px;list-style:none;display:flex;gap:10px;align-items:center}
+details.acc>summary::-webkit-details-marker{display:none}
+details.acc>summary::after{content:"＋";margin-left:auto;color:var(--mute);font-weight:700}
+details.acc[open]>summary::after{content:"－"}
+.dwrap{display:grid;gap:14px;padding:2px 0 20px}
+.dbox{border-radius:14px;padding:14px 16px}
+.dbox h4{margin:0 0 6px;font-size:15px;text-transform:uppercase;letter-spacing:.04em}
+.dbox p,.dbox ul,.dbox ol{margin:0}
+.dbox ul,.dbox ol{padding-left:20px}
+.dbox li{margin:4px 0}
+.dn{background:var(--track)}
+.feel{background:var(--okbg)}.feel h4{color:var(--okink)}
+.avoid{background:var(--badbg)}.avoid h4{color:var(--badink)}
+.mistakes{background:var(--warnbg)}.mistakes h4{color:var(--warnink)}
+.breath{background:var(--infobg)}.breath h4{color:var(--infoink)}
+.vary{background:var(--varybg)}.vary h4{color:var(--varyink)}
+.vary p+p{margin-top:8px}
+.yt{display:inline-block;background:var(--ink);color:var(--bg);text-decoration:none;font-weight:700;padding:14px 26px;border-radius:14px}
+.notice{background:var(--warnbg);border-left:5px solid var(--sun);padding:14px 16px;border-radius:12px;margin:14px 0;color:var(--warnink)}
+.tip{margin:22px 0 0;color:var(--mute);font-size:17px}
+
+/* session */
+.top{display:flex;align-items:center;gap:20px;margin-bottom:22px}
+.bar{flex:1;height:14px;border-radius:7px;background:var(--track);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--ring);border-radius:7px;transition:width .4s}
+.count{font-weight:500;color:var(--mute);white-space:nowrap}
+.quit{min-height:52px;padding:0 20px;font-size:18px;border-radius:14px}
+.grid{display:grid;grid-template-columns:1.25fr 1fr;gap:28px;align-items:start}
+@media (max-width:860px){.grid{grid-template-columns:1fr}}
+.video{aspect-ratio:16/9;width:100%;border-radius:22px;overflow:hidden;background:#0b1a1a;display:grid;place-items:center;text-align:center}
+.video iframe{width:100%;height:100%;border:0}
+.ph{padding:24px;color:#d9ebe8}
+.ph a{display:inline-block;margin-top:12px;color:var(--sunink);background:var(--sun);padding:14px 26px;border-radius:14px;text-decoration:none;font-weight:700}
+.panel{background:var(--card);border-radius:22px;padding:26px}
+.side{display:flex;flex-direction:column;gap:20px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}
+.chip{background:var(--track);border-radius:999px;padding:5px 12px;font-size:15px;font-weight:600}
+.timer{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.ringbox{position:relative;width:170px;height:170px;flex:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.ringbox svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ringbox circle{fill:none;stroke-width:14}
+.ringbox .tr{stroke:var(--track)}
+.ringbox .pr{stroke:var(--ring);stroke-linecap:round;transition:stroke-dashoffset 1s linear}
+.ringbox b{position:absolute;inset:0;display:grid;place-items:center;font-size:52px;font-variant-numeric:tabular-nums}
+.hint{display:inline-block;background:var(--track);border-radius:12px;padding:6px 14px;font-size:17px;margin-bottom:14px}
+.nav{display:flex;gap:16px;margin-top:28px;flex-wrap:wrap}
+.nav .btn.main{flex:1;min-width:240px}
+.isbreak .ringbox .pr{stroke:var(--sun)}
+.isbreak .hint{background:var(--sun);color:var(--sunink);font-weight:700}
+.done{text-align:center;padding-top:8vh}
+.done p{margin-inline:auto}
 </style>
 </head>
 <body>
-<header class="site-head">
-  <div class="wrap">
-    <div class="brand">🧘 Desk Reset · stretching</div>
-    <h1>20-minutowy trening mobilności</h1>
-    <p class="lead">Szyja · kark · odcinek piersiowy · biodra · tylna taśma · nadgarstki — dla osoby pracującej 8&nbsp;godzin przy biurku.</p>
-    <div class="statbar">
-      <div class="stat"><b id="doneCount">0</b> / <span id="totalCount">17</span> ćwiczeń</div>
-      <div class="stat">⏱️ ~20 min</div>
-      <div class="stat">💪 3× w tygodniu</div>
-      <div class="stat">🎚️ poziom: wymagający</div>
+<button class="tbtn" id="theme" title="Zmień motyw (jasny/ciemny)" aria-label="Zmień motyw">🌙</button>
+<div class="wrap">
+
+<section id="start" class="screen">
+  <p class="brand">🧘 Mobilność po pracy</p>
+  <h1>Sesja rozciągania</h1>
+  <p class="mute" id="intro"></p>
+
+  <div class="settings">
+    <div><div class="lbl">Zakres sesji</div>
+      <div class="seg" id="rt">
+        <button data-r="full" aria-pressed="true">Pełna sesja · ~20 min</button>
+        <button data-r="work" aria-pressed="false">⚡ Reset w pracy · ~5 min</button>
+      </div></div>
+    <div><div class="lbl">Przerwa między ćwiczeniami</div>
+      <div class="seg" id="brk">
+        <button data-s="0" aria-pressed="false">Brak</button>
+        <button data-s="5" aria-pressed="false">5 s</button>
+        <button data-s="10" aria-pressed="true">10 s</button>
+        <button data-s="15" aria-pressed="false">15 s</button>
+        <button data-s="30" aria-pressed="false">30 s</button>
+      </div></div>
+    <div><div class="lbl">Dźwięk</div>
+      <div class="seg" id="snd"><button data-v="1" aria-pressed="true">Włączony</button><button data-v="0" aria-pressed="false">Wyłączony</button></div></div>
+    <div><div class="lbl">Głos (zapowiada ćwiczenia)</div>
+      <div class="seg" id="voc"><button data-v="1" aria-pressed="true">Włączony</button><button data-v="0" aria-pressed="false">Wyłączony</button></div></div>
+  </div>
+
+  <ul class="list" id="list"></ul>
+
+  <div class="go-row"><button class="btn main big" id="go">Rozpocznij sesję</button></div>
+
+  <div class="notice"><strong>Zasady:</strong> pracuj w zakresie ok. 5–7/10 napięcia — wyraźnie, ale bez ostrego bólu. <strong>Przerwij ćwiczenie</strong>, jeśli pojawi się ostry lub narastający ból, promieniowanie do ręki/nogi, drętwienie, mrowienie, osłabienie kończyny albo zawroty głowy. Materiał jest edukacyjny i nie zastępuje badania fizjoterapeutycznego ani lekarskiego.</div>
+
+  <details class="acc" id="allacc">
+    <summary>📖 Instrukcje i wskazówki wszystkich ćwiczeń</summary>
+    <div id="details"></div>
+  </details>
+  <p class="tip">Wskazówka: podczas sesji dotknij tarczy czasu, aby zatrzymać lub wznowić; przesuń palcem w lewo/prawo, aby zmienić ćwiczenie. Ekran pozostaje włączony, a głos zapowiada kolejne ćwiczenia.</p>
+</section>
+
+<section id="run" class="screen" hidden>
+  <div class="top">
+    <button class="btn quit" id="quit">Zakończ</button>
+    <div class="bar"><i id="bar"></i></div>
+    <div class="count" id="count"></div>
+  </div>
+  <div class="grid">
+    <div class="video" id="video"></div>
+    <div class="side">
+      <div class="panel">
+        <span class="hint" id="hint"></span>
+        <h2 id="name"></h2>
+        <div class="chips" id="chips"></div>
+        <p id="desc"></p>
+        <details class="acc"><summary>📖 Pełna instrukcja i wskazówki</summary><div id="runDetails"></div></details>
+      </div>
+      <div class="panel timer">
+        <div class="ringbox" role="button" aria-label="Zatrzymaj lub wznowić">
+          <svg viewBox="0 0 170 170"><circle class="tr" cx="85" cy="85" r="76"/><circle class="pr" id="ring" cx="85" cy="85" r="76"/></svg>
+          <b id="time">30</b>
+        </div>
+        <button class="btn main big" id="toggle">Start</button>
+      </div>
     </div>
   </div>
-</header>
-
-<div class="toolbar">
-  <div class="toolbar-inner">
-    <div class="progress"><div id="bar" class="bar"></div></div>
-    <div class="pcount" id="pcount">0%</div>
-    <div class="chips" id="filters"></div>
+  <div class="nav">
+    <button class="btn" id="prev">Wstecz</button>
+    <button class="btn main" id="next">Następne ćwiczenie</button>
   </div>
+  <p class="tip">Dotknij tarczy czasu, aby zatrzymać / wznowić. Przesuń palcem w lewo lub w prawo, aby zmienić ćwiczenie.</p>
+</section>
+
+<section id="end" class="screen done" hidden>
+  <h1>Sesja zakończona 🎉</h1>
+  <p class="mute" id="summary"></p>
+  <p class="tip">Świetna robota. Zrób teraz 2–3 minuty spaceru zamiast od razu wracać do siedzenia.</p>
+  <button class="btn main big" id="again">Zacznij od nowa</button>
+</section>
+
 </div>
-
-<main>
-  <div class="wrap">
-    <section class="card">
-      <h3 style="margin-top:0">Jak korzystać z tego planu</h3>
-      <div class="grid-steps">
-        <div class="step-mini"><b>1 · Kiedy</b>Rób pełny trening 3× w tygodniu, najlepiej po pracy. Chip „Reset w pracy” to 5-minutowa wersja do biurka.</div>
-        <div class="step-mini"><b>2 · Timer</b>Każde ćwiczenie ma własny stoper (▶). Zielony błysk i dźwięk oznaczają koniec czasu.</div>
-        <div class="step-mini"><b>3 · Wideo</b>Kliknij miniaturę, aby odtworzyć film. Osadzone wideo wymaga adresu http(s) (np. GitHub Pages) — przy otwarciu lokalnego pliku działają przyciski „Otwórz na YouTube”.</div>
-        <div class="step-mini"><b>4 · Postęp</b>Odhaczaj ukończone ćwiczenia — Twój postęp zapisuje się w przeglądarce (localStorage).</div>
-      </div>
-      <div class="notice"><strong>Intensywność:</strong> pracuj w zakresie ok. 5–7/10 napięcia. Ma być wyraźnie, ale bez ostrego bólu. Nie dociskaj na siłę szyi ani kręgosłupa. Najlepsze efekty daje <em>regularność</em>, nie maksymalny zakres.</div>
-    </section>
-
-    <div id="list"></div>
-    <p class="note hide" id="workNote">⚡ <strong>Reset w pracy (5 min):</strong> te 5 ćwiczeń wykonasz bez maty — przy biurku, na krześle i przy drzwiach. Zrób je nawet w krótkiej przerwie o pełnej godzinie.</p>
-
-    <section class="card">
-      <h3 style="margin-top:0">Po treningu</h3>
-      <p><strong>2–3 minuty spaceru</strong> zamiast natychmiastowego powrotu do siedzenia. W pracy wstawaj na 2–3 minuty co godzinę — częsta zmiana pozycji jest ważniejsza niż „idealna” pozycja siedząca.</p>
-      <div class="notice"><strong>Przerwij ćwiczenie</strong>, jeśli pojawi się ostry lub narastający ból, promieniowanie do ręki/nogi, drętwienie, mrowienie, uczucie osłabienia kończyny albo zawroty głowy. Przy utrzymujących się dolegliwościach szyi lub kręgosłupa skonsultuj się z lekarzem lub fizjoterapeutą.</div>
-    </section>
-  </div>
-</main>
-
-<footer>
-  <strong>Uwaga:</strong> materiał ma charakter edukacyjny i nie zastępuje badania fizjoterapeutycznego ani lekarskiego.
-  Wideo to zewnętrzna treść YouTube (osadzana z youtube.com) — ich dostępność i możliwość osadzania może się zmieniać.
-  Wybierz ćwiczenia i zakres odpowiednie dla siebie; w razie wątpliwości skonsultuj się ze specjalistą.
-</footer>
-
 <script>
-/* ============================ DANE ĆWICZEŃ ============================ */
-const SECTIONS = [
-  {key:"warmup",     label:"Rozgrzewka",               color:"#0ea5e9"},
-  {key:"neck",       label:"Szyja i kark",             color:"#8b5cf6"},
-  {key:"thorax",     label:"Odcinek piersiowy i barki",color:"#ec4899"},
-  {key:"hips",       label:"Biodra i zginacze",        color:"#f59e0b"},
-  {key:"posterior",  label:"Tylna taśma i pośladki",   color:"#10b981"},
-  {key:"calves",     label:"Łydki i nadgarstki",       color:"#ef4444"}
-];
-const SECMAP = Object.fromEntries(SECTIONS.map(s=>[s.key,s]));
-
-const EX = [
-  {
-    id:"cat-cow", sec:"warmup", name:"Cat–Cow (kot–krowa)", work:false,
-    area:"cały kręgosłup • rozgrzewka", difficulty:"Łatwy", sets:"2 serie × 8–10 powolnych powtórzeń",
-    timer:60, video:"fcnv4gyMzf8", videoTitle:"Cat Cow stretch for back pain",
-    why:"Płynna mobilizacja całego kręgosłupa — od miednicy, przez odcinek lędźwiowy i piersiowy, aż do szyi. Idealne rozgrzanie po długim siedzeniu.",
-    steps:[
-      "Klęknij na macie: dłonie pod barkami, kolana pod biodrami (pozycja na czworaka).",
-      "Wdech — delikatnie wydłuż kręgosłup, unieś mostek i kość ogonową, wzrok lekko w górę („krowa”).",
-      "Wydech — zaokrąglij plecy, podwiń miednicę, brodę zbliż do mostka („kot”).",
-      "Poruszaj się wolno i płynnie: jeden wdech i jeden wydech to jedna fala ruchu.",
-      "Nie szukaj maksymalnego zakresu — liczy się równomierny ruch całego kręgosłupa."
-    ],
-    feel:"Płynną falę ruchu przechodzącą od miednicy przez plecy aż do szyi. W pozycji „kota” lekkie rozciągnięcie z tyłu tułowia.",
-    avoid:"Ostrego bólu kręgosłupa, gwałtownych szarpnięć i mocnego dociskania skrajnych pozycji.",
-    mistakes:["Ruch tylko klatką piersiową, bez pracy miednicy.","Zbyt szybkie tempo i gubienie oddechu.","Napinanie barków do uszu."],
-    breath:"Wdech w „krowie”, wydech w „kocie”. Oddech prowadzi ruch i nadaje tempo.",
-    easier:"Wykonuj ruch siedząc na krześle — tylko odcinek piersiowy i lędźwiowy.",
-    harder:"Zatrzymaj się na 2–3 s w skrajnej pozycji i dodaj delikatną rotację w pozycji „kota”."
-  },
-  {
-    id:"chin-tuck", sec:"neck", name:"Chin Tuck (retrakcja szyi)", work:true,
-    area:"szyja • kark • postawa", difficulty:"Łatwy", sets:"2 serie × 10 powtórzeń × 5 s przytrzymania",
-    timer:60, video:"O2kkwT6t3R0", videoTitle:"The Chin Tuck — neck strengthening & posture",
-    why:"Koryguje wysuniętą do przodu głowę i aktywuje głębokie mięśnie szyi. Bezpieczne, codzienne ćwiczenie na napięty kark.",
-    steps:[
-      "Siądź lub stań wyprostowany, wzrok na wysokości oczu, barki rozluźnione.",
-      "Delikatnie cofnij głowę do tyłu, tworząc lekki „podwójny podbródek” — bez pochylania w dół.",
-      "Ruch jest poziomy (cofanie), nie schodzenie brodą do mostka.",
-      "Przytrzymaj 5 s, rozluźnij i powtórz.",
-      "Barki przez cały czas zostają opuszczone."
-    ],
-    feel:"Napięcie pod potylicą i z przodu szyi oraz delikatne rozciągnięcie z tyłu karku.",
-    avoid:"Bólu, zawrotów głowy i twardego zaciskania żuchwy.",
-    mistakes:["Zaciskanie zębów i napinanie żuchwy.","Opuszczanie brody zamiast cofania głowy.","Unoszenie barków do uszu."],
-    breath:"Wdech nosem, na wydechu delikatnie pogłębiaj cofnięcie głowy.",
-    easier:"Oprzyj tył głowy o ścianę i wykonuj bardzo mały ruch, wyczuwając dotyk ściany.",
-    harder:"Wykonaj w leżeniu na plecach lub dodaj łagodny opór gumy za głową."
-  },
-  {
-    id:"neck-rom", sec:"neck", name:"Rotacja i pochylenia szyi (zakres)", work:false,
-    area:"szyja • zakres ruchu", difficulty:"Łatwy", sets:"5 powtórzeń w każdą stronę",
-    timer:45, video:"j3_8btE4X-w", videoTitle:"Neck Active Range of Motion",
-    why:"Poprawia ograniczoną rotację szyi i przywraca płynność ruchu bez agresywnego rozciągania.",
-    steps:[
-      "Siądź wyprostowany, barki rozluźnione.",
-      "Powoli obróć głowę w lewo do wygodnej granicy, potem w prawo.",
-      "Dodaj delikatne pochylenia w bok oraz lekkie zgięcie w przód i wyprost.",
-      "Ruch wykonuj wolno i płynnie, w zakresie bez bólu.",
-      "Nie pomagaj sobie ręką i nie dociskaj skrajnego zakresu."
-    ],
-    feel:"Lekki opór i stopniowe zwiększanie swobody ruchu.",
-    avoid:"Bólu, zawrotów głowy, mrowienia i mocnego ciągnięcia szyi.",
-    mistakes:["Zbyt szybkie, szarpane ruchy.","Wzruszanie barków.","Wymuszanie zakresu mimo bólu."],
-    breath:"Spokojny oddech; na wydechu możesz minimalnie pogłębić zakres.",
-    easier:"Zredukuj zakres o połowę i wykonuj ruchy siedząc z plecami podpartymi o oparcie.",
-    harder:"Zatrzymaj 2 s na końcu każdej rotacji i wykonaj 10 powolnych powtórzeń."
-  },
-  {
-    id:"upper-trap", sec:"neck", name:"Rozciąganie górnej części karku", work:true,
-    area:"kark • górny czworoboczny", difficulty:"Łatwy", sets:"2 serie × 30 s na stronę",
-    timer:60, video:"xvZ9_5lqcVI", videoTitle:"NUHS Physiotherapy — Upper Trapezius Stretch",
-    why:"Ukierunkowane rozciągnięcie górnej części mięśnia czworobocznego — najczęstszego źródła napięcia przy pracy przy biurku.",
-    steps:[
-      "Siądź wysoko na krześle. Ręką po stronie rozciąganej złap krawędź siedziska.",
-      "Opuść bark w dół, oddalając go od ucha.",
-      "Przechyl głowę w stronę przeciwną, tak by ucho zbliżało się do ramienia.",
-      "Drugą dłoń połóż na głowie tylko jako lekki ciężar — nie ciągnij.",
-      "Wytrzymaj 30 s, oddychając spokojnie, i zmień stronę."
-    ],
-    feel:"Rozciągnięcie po bocznej stronie szyi i karku, w kierunku barku.",
-    avoid:"Szarpania głową, unoszenia rozciąganego barku i bólu promieniującego do ręki.",
-    mistakes:["Podciąganie barku do ucha.","Mocne ciągnięcie głowy ręką.","Skręcanie tułowia."],
-    breath:"Wdech, na wydechu rozluźnij bark i pozwól rozciągnięciu się pogłębić.",
-    easier:"Bez ręki na głowie — tylko przechyl głowę i rozluźnij bark.",
-    harder:"Dodaj lekki skręt i spójrz w dół do pachy dalszej ręki; przytrzymaj 20 s."
-  },
-  {
-    id:"levator", sec:"neck", name:"Rozciąganie dźwigacza łopatki", work:false,
-    area:"kark • dźwigacz łopatki", difficulty:"Średni", sets:"2 serie × 30 s na stronę",
-    timer:60, video:"GSoXPJRnR6E", videoTitle:"Levator Scapula Stretch — Ask Doctor Jo",
-    why:"Dźwigacz łopatki łączy szyję z łopatką i bywa bardzo napięty przy komputerze — szczególnie po stronie „zgrzytającej” łopatki.",
-    steps:[
-      "Siądź wyprostowany. Obróć głowę o ok. 45° w stronę rozciąganą.",
-      "Opuść wzrok w kierunku pachy po stronie rozciąganej (patrz „do kieszeni”).",
-      "Delikatnie pochyl głowę w tym kierunku; ręką możesz złapać siedzisko, by opuścić bark.",
-      "Drugą dłoń połóż na głowie jako lekki ciężar (opcjonalnie).",
-      "Wytrzymaj 30 s i zmień stronę."
-    ],
-    feel:"Rozciągnięcie z tyłu i boku szyi, schodzące w stronę łopatki.",
-    avoid:"Silnego nacisku na głowę i bólu promieniującego do ręki.",
-    mistakes:["Patrzenie w przód zamiast w dół do pachy.","Utrzymywanie napiętego barku.","Zbyt mocny docisk ręką na głowę."],
-    breath:"Powolny, spokojny oddech; na wydechu rozluźniaj bark.",
-    easier:"Bez ręki na głowie i z mniejszym skrętem szyi.",
-    harder:"Po ustawieniu dodaj delikatną rotację tułowia w stronę skrętu szyi."
-  },
-  {
-    id:"thread-needle", sec:"thorax", name:"Thread the Needle (przeciąganie nici)", work:false,
-    area:"odcinek piersiowy • barki • łopatki", difficulty:"Średni", sets:"2 serie × 6–8 powtórzeń na stronę",
-    timer:75, video:"blBC6222kuU", videoTitle:"Thread the Needle with Thoracic Rotation",
-    why:"Mobilizuje rotację odcinka piersiowego i otwiera barki — świetne na sztywność „między łopatkami”.",
-    steps:[
-      "Klęknij na czworaka: dłonie pod barkami, kolana pod biodrami.",
-      "Unieś prawą rękę w górę i w bok, otwierając klatkę — wzrok podąża za ręką.",
-      "Następnie „przepleć” prawą rękę pod lewą, kładąc bark i bok głowy na macie.",
-      "Wytrzymaj 2–3 s w dole, poczuj rozciągnięcie między łopatkami.",
-      "Wróć i powtórz na drugą stronę."
-    ],
-    feel:"Rozciągnięcie między łopatkami i rotację w górnej części pleców.",
-    avoid:"Skręcania odcinka lędźwiowego siłą, bólu barku i zbyt szybkiego tempa.",
-    mistakes:["Odpychanie się głową zamiast barkiem.","Podnoszenie bioder.","Ruch całym tułowiem zamiast odcinkiem piersiowym."],
-    breath:"Wdech w górnej pozycji, wydech podczas przenoszenia ręki pod siebie.",
-    easier:"Przenieś rękę pod siebie tylko na tyle, na ile pozwala komfort — bez kładzenia barku na macie.",
-    harder:"W górnej pozycji zatrzymaj 3 s i dodatkowo oprzyj dłoń za plecami."
-  },
-  {
-    id:"open-book", sec:"thorax", name:"Open Book (otwarta książka)", work:false,
-    area:"odcinek piersiowy • klatka • łopatki", difficulty:"Średni", sets:"6–8 powtórzeń na stronę (zatrzymanie 3–5 s)",
-    timer:75, video:"OW6YHlxY6JI", videoTitle:"Open Book Stretch — Physical Therapy Exercises",
-    why:"Otwiera klatkę piersiową i poprawia rotację odcinka piersiowego — działa na sztywność powstałą od siedzenia i zgarbionej postawy.",
-    steps:[
-      "Połóż się na boku; biodra i kolana zgięte ok. 90°.",
-      "Wyciągnij ramiona przed siebie, dłonie razem.",
-      "Górną rękę otwórz w stronę sufitu i dalej za siebie, wodząc wzrokiem za dłonią.",
-      "Kolana trzymaj razem — ruch pochodzi z odcinka piersiowego.",
-      "Wytrzymaj 3–5 s na końcu, wróć do środka i powtórz."
-    ],
-    feel:"Rozciągnięcie klatki piersiowej i wyraźny ruch między łopatkami.",
-    avoid:"Odrywania kolan i skręcania odcinka lędźwiowego.",
-    mistakes:["Otwieranie nóg razem z ręką.","Wymuszanie zakresu siłą.","Wstrzymywanie oddechu."],
-    breath:"Wdech w otwarciu, wydech w powrocie do środka.",
-    easier:"Oprzyj kolana/„górną” dłoń na poduszce, ograniczając rotację i zwiększając kontrolę.",
-    harder:"Zatrzymaj dłużej (do 10 s) i dodaj delikatne pogłębienie na wydechu."
-  },
-  {
-    id:"thoracic-ext", sec:"thorax", name:"Wyprost odcinka piersiowego (wałek/piłka)", work:false,
-    area:"odcinek piersiowy • barki", difficulty:"Średni", sets:"6–8 spokojnych wyprostów w 2–3 miejscach",
-    timer:60, video:"H4u3J3Spcvw", videoTitle:"Thoracic Extension on a Foam Roller",
-    why:"Przywraca wyprost sztywnego odcinka piersiowego — kluczowe przy zaokrąglonej górnej części pleców.",
-    steps:[
-      "Połóż wałek do rolowania (lub piłkę) poprzecznie pod górną częścią pleców.",
-      "Podeprzyj głowę splecionymi dłońmi za karkiem, łokcie blisko siebie.",
-      "Delikatnie wykonaj wyprost grzbietu nad wałkiem — bez wyginania odcinka lędźwiowego.",
-      "Przesuń wałek o kilka centymetrów i powtórz w 2–3 miejscach.",
-      "Nie roluj po odcinku lędźwiowym ani po szyi."
-    ],
-    feel:"Ruch i rozciągnięcie w górnej części pleców, między łopatkami.",
-    avoid:"Przeprostu odcinka lędźwiowego, bólu oraz rolowania po krzyżu i szyi.",
-    mistakes:["Wypychanie żeber w górę zamiast wyprostu pleców.","Trzymanie łokci szeroko.","Zbyt szybkie tempo."],
-    breath:"Wdech przed wyprostem, wydech w trakcie odchylenia do tyłu.",
-    easier:"Użyj małego zwiniętego ręcznika zamiast wałka i ogranicz zakres.",
-    harder:"W każdej pozycji zatrzymaj 5 s i wykonaj kilka spokojnych oddechów w rozciągnięciu."
-  },
-  {
-    id:"doorway-pec", sec:"thorax", name:"Rozciąganie klatki w drzwiach (doorway)", work:true,
-    area:"klatka piersiowa • barki • przód", difficulty:"Łatwy", sets:"2 serie × 30–45 s",
-    timer:60, video:"CYMIdBCSIKM", videoTitle:"Doorway pec stretch — Atlanta PT",
-    why:"Otwiera przód klatki piersiowej i barki po godzinach przy komputerze. Wystarczą drzwi — idealne również do pracy.",
-    steps:[
-      "Stań w otwartych drzwiach; oprzyj przedramiona (lub dłonie) o framugę na wysokości barków.",
-      "Zrób mały krok do przodu jedną nogą.",
-      "Delikatnie przenieś ciężar ciała do przodu, otwierając klatkę.",
-      "Utrzymuj żebra „spokojnie” — nie wyginaj odcinka lędźwiowego.",
-      "Wytrzymaj 30–45 s, oddychając swobodnie."
-    ],
-    feel:"Wyraźne, ale komfortowe rozciągnięcie z przodu klatki i barków.",
-    avoid:"Unoszenia barków, przeprostu odcinka lędźwiowego i bólu z przodu barku.",
-    mistakes:["Wysuwanie głowy do przodu.","Podnoszenie barków do uszu.","Wyginanie pleców w łuk."],
-    breath:"Wdech, na wydechu delikatnie pogłębiaj otwarcie klatki.",
-    easier:"Zrób to na niższej wysokości (łokcie niżej) i z mniejszym krokiem.",
-    harder:"Podnieś łokcie wyżej, zatrzymaj 45 s i zmieniaj wysokość ramion."
-  },
-  {
-    id:"pull-apart", sec:"thorax", name:"Rozciąganie gumy (band pull-apart)", work:true,
-    area:"barki • łopatki • górne plecy", difficulty:"Średni", sets:"2 serie × 12–15 kontrolowanych powtórzeń",
-    timer:60, video:"stwYTTPXubo", videoTitle:"Banded Pull-Aparts",
-    why:"Wzmacnia i aktywuje mięśnie cofające łopatki — przeciwdziała zgarbionej postawie i ustawia barki do tyłu. Świetne uzupełnienie rozciągania.",
-    steps:[
-      "Chwyć gumę oburącz przed sobą na wysokości barków, dłonie na szerokość barków.",
-      "Wyciągnij ramiona na wprost, łokcie niemal proste.",
-      "Rozciągnij gumę na boki, zbliżając łopatki do siebie.",
-      "Powoli i kontrolowanie wróć do początku.",
-      "Barki trzymaj nisko — nie unoś ich do uszu."
-    ],
-    feel:"Napięcie między łopatkami i w górnej części pleców (to ćwiczenie wzmacniające, nie rozciągające).",
-    avoid:"Unoszenia barków do uszu, wysuwania głowy do przodu i zbyt mocnej gumy.",
-    mistakes:["Zbyt mocna guma i praca samymi barkami.","Wypinanie żeber.","Szybkie, sprężynujące ruchy bez kontroli."],
-    breath:"Wydech przy rozciąganiu gumy, wdech przy powrocie.",
-    easier:"Użyj słabszej gumy lub wykonuj ruch jedną ręką, drugą trzymając nieruchomo.",
-    harder:"Użyj mocniejszej gumy, zatrzymaj 2 s w pełnym rozciągnięciu i rób „pull-apart” pod kątem (w górę/dół)."
-  },
-  {
-    id:"pass-through", sec:"thorax", name:"Przenoszenie gumy nad głową (pass-through)", work:false,
-    area:"barki • rotacja • klatka", difficulty:"Średni", sets:"2 serie × 10 powolnych przejść",
-    timer:60, video:"riVxa9By-pM", videoTitle:"Band Dislocates / Pass-Throughs (Shoulder Mobility)",
-    why:"Poprawia mobilność obręczy barkowej — pomaga przy sztywności i „zgrzytaniu” w okolicy łopatek.",
-    steps:[
-      "Chwyć gumę szeroko oburącz przed sobą.",
-      "Utrzymując proste łokcie, unieś ramiona i przenieś gumę nad głowę oraz za plecy.",
-      "Nie uginaj łokci — jeśli musisz, chwyć gumę szerzej.",
-      "Wróć tą samą drogą do przodu.",
-      "Wykonuj powoli, w zakresie bez bólu."
-    ],
-    feel:"Ruch i rozciągnięcie w barkach oraz otwieranie przodu klatki.",
-    avoid:"Bólu barku, uginania łokci i zbyt wąskiego chwytu.",
-    mistakes:["Zbyt wąski chwyt i wymuszanie zakresu.","Uginanie łokci.","Wypychanie żeber do przodu."],
-    breath:"Spokojny oddech; nie wstrzymuj powietrza.",
-    easier:"Chwyć gumę bardzo szeroko albo użyj ręcznika lub kija.",
-    harder:"Stopniowo zwężaj chwyt i zatrzymuj na 2 s za plecami."
-  },
-  {
-    id:"hip-flexor", sec:"hips", name:"Klęczące rozciąganie zginaczy biodra", work:false,
-    area:"zginacze biodra • przód uda", difficulty:"Średni", sets:"2 serie × 30–45 s na stronę",
-    timer:75, video:"F55tzqJggAY", videoTitle:"Half Kneeling Hip Flexor Stretch — B3 Physical Therapy",
-    why:"Rozciąga zginacze biodra skrócone przez wielogodzinne siedzenie — często przyczyniają się do napięcia odcinka lędźwiowego.",
-    steps:[
-      "Klęknij na jednym kolanie (podłóż coś miękkiego), druga stopa z przodu.",
-      "Napnij pośladek nogi klęczącej i delikatnie podwiń miednicę (lekki „podbródek” w miednicy).",
-      "Utrzymując tułów pionowo, przesuń miednicę kilka centymetrów do przodu.",
-      "Trzymaj napięty pośladek — to chroni odcinek lędźwiowy.",
-      "Wytrzymaj 30–45 s i zmień stronę."
-    ],
-    feel:"Rozciągnięcie z przodu biodra i górnej części uda nogi klęczącej.",
-    avoid:"Wypychania bioder przez wyginanie odcinka lędźwiowego, bólu kolana i przeprostu.",
-    mistakes:["Wyginanie pleców zamiast pracy w biodrze.","Brak napięcia pośladka.","Zbyt mocne wypychanie miednicy do przodu."],
-    breath:"Wdech, na wydechu delikatnie przesuń miednicę do przodu.",
-    easier:"Trzymaj ręce na krześle dla podparcia i ogranicz przesunięcie miednicy.",
-    harder:"Podnieś ramię strony rozciąganej i przechyl tułów w bok lub oprzyj stopę na podwyższeniu (wersja „couch”)."
-  },
-  {
-    id:"hip-9090", sec:"hips", name:"90/90 Stretch (biodra)", work:false,
-    area:"biodra • rotacja wewn./zewn.", difficulty:"Średni/Trudny", sets:"60–90 s, zmieniając strony",
-    timer:90, video:"t4Zz6-aG8Iw", videoTitle:"90/90 Hip Stretch",
-    why:"Praca nad ograniczonym zakresem rotacji biodra — dokładnie tym, co usztywnia się przy siedzeniu.",
-    steps:[
-      "Usiądź na macie; jedną nogę zegnij do przodu pod kątem 90°, drugą z boku również pod 90°.",
-      "Utrzymuj klatkę wysoko i wydłuż kręgosłup.",
-      "Powoli pochyl tułów nad przednią nogą, utrzymując plecy proste.",
-      "Zatrzymaj 20–30 s, poczuj pracę w tylnej części biodra.",
-      "Zmień stronę; w razie potrzeby podeprzyj biodro poduszką."
-    ],
-    feel:"Pracę w tylnej i bocznej części biodra, czasem także w środku.",
-    avoid:"Forsowania kolan, zapadania tułowia i bólu kolana.",
-    mistakes:["Zaokrąglanie pleców.","Zbyt krótkie zatrzymanie.","Nacisk na kolano ręką."],
-    breath:"Wydłużony wydech pomaga pogłębić pochylenie tułowia.",
-    easier:"Podnieś biodra na poduszce (książce) i nie ustawiaj kolan idealnie w 90°.",
-    harder:"Przechodź płynnie z jednej strony na drugą (hip switch), utrzymując klatkę wysoko."
-  },
-  {
-    id:"figure4", sec:"posterior", name:"Figure-4 / rozciąganie pośladka", work:false,
-    area:"pośladek • rotatory biodra", difficulty:"Łatwy", sets:"2 serie × 30–45 s na stronę",
-    timer:75, video:"2VE_NLcNMvQ", videoTitle:"Glute Figure 4 Stretch — Ask Doctor Jo",
-    why:"Rozciąga pośladek i głębokie rotatory biodra — pomaga przy napięciu pośladka i sztywności biodra.",
-    steps:[
-      "Połóż się na plecach, nogi ugięte, stopy na macie.",
-      "Załóż kostkę jednej nogi na udo drugiej (jak „czwórka”).",
-      "Przełóż ręce za udo nogi podporowej i przyciągnij ją do klatki.",
-      "Utrzymuj stopę założonej nogi „aktywną” (palce kieruj do góry).",
-      "Wytrzymaj 30–45 s i zmień stronę."
-    ],
-    feel:"Wyraźne rozciągnięcie w pośladku i tylnej części biodra.",
-    avoid:"Bólu kolana, ciągnięcia kolana na siłę i wypychania biodra.",
-    mistakes:["Zbyt mocne przyciąganie.","Rozluźnienie stopy założonej nogi.","Asymetria — jedno biodro wyżej niż drugie."],
-    breath:"Spokojny oddech; na wydechu delikatnie przyciągnij nogę.",
-    easier:"Wykonaj na siedząco („czwórka” w krześle), pochylając się delikatnie do przodu.",
-    harder:"Zatrzymaj dłużej (60 s) i dodaj delikatne, małe pogłębienia/powroty."
-  },
-  {
-    id:"hamstring", sec:"posterior", name:"Rozciąganie dwugłowych z gumą", work:false,
-    area:"dwugłowe uda • tylna taśma", difficulty:"Łatwy/Średni", sets:"2 × 45 s na stronę + ruchy stopy",
-    timer:75, video:"KAr101d6jHU", videoTitle:"Hamstring Stretch",
-    why:"Bezpieczna praca nad sztywnością tylnej taśmy bez wymuszania skłonu kręgosłupa. To Twoja główna sztywność — dotknięcie palców przyjdzie z czasem.",
-    steps:[
-      "Połóż się na plecach. Założ gumę (lub ręcznik) na śródstopie jednej nogi.",
-      "Unieś nogę w górę, kolano lekko ugięte; druga noga wyprostowana, leży na macie.",
-      "Delikatnie prostuj kolano do momentu wyraźnego, ale komfortowego napięcia.",
-      "Zatrzymaj 30 s; w tym czasie wykonaj 10–15 ruchów stopy (zgięcie/wyprost).",
-      "Zmień stronę."
-    ],
-    feel:"Napięcie z tyłu uda (dwugłowe), bez bólu pod kolanem.",
-    avoid:"Agresywnego ciągnięcia, zaokrąglania odcinka lędźwiowego i bólu pleców.",
-    mistakes:["Dopychanie kolana na siłę.","Oderwanie drugiej nogi od podłogi.","Dźwiganie barków i napinanie karku."],
-    breath:"Wydłużony, spokojny wydech w trakcie rozciągania.",
-    easier:"Zegnij kolano wyraźniej i zmniejsz zakres (zostaw lekki opór).",
-    harder:"Wyprostuj kolano bliżej pełnego wyprostu i dodaj naprzemienne napięcia (naciśnij nogą w gumę 5 s, potem rozluźnij)."
-  },
-  {
-    id:"wall-calf", sec:"calves", name:"Rozciąganie łydki przy ścianie", work:false,
-    area:"łydki • kostka", difficulty:"Łatwy", sets:"2 × 30 s na stronę",
-    timer:60, video:"4fwN8uiF7z8", videoTitle:"Stretch Your Calves Against The Wall (Correctly)",
-    why:"Rozluźnia łydki i poprawia ruch w kostce — ułatwia głębszy skłon i prawidłowy chód.",
-    steps:[
-      "Stań twarzą do ściany; dłonie na ścianie na wysokości barków.",
-      "Cofnij jedną nogę, utrzymując jej piętę na podłodze, palce wyprostowane do przodu.",
-      "Przenieś ciężar do przodu, ugnij przednią nogę; poczuj rozciągnięcie łydki nogi tylnej.",
-      "Trzymaj tylną piętę na ziemi przez cały czas; zmień nogę.",
-      "Lekko zegnij tylną nogę, by rozciągnąć mięsień płaszczkowaty (niżej)."
-    ],
-    feel:"Rozciągnięcie łydki — wyżej przy prostym kolanie, niżej przy zgiętym.",
-    avoid:"Odrywania pięty, zapadania stopy do środka i bólu ścięgna Achillesa.",
-    mistakes:["Odrywanie tylnej pięty.","Kręcenie stopą na zewnątrz.","Zbyt duży krok."],
-    breath:"Spokojny oddech; na wydechu delikatnie przenieś ciężar do przodu.",
-    easier:"Zmniejsz krok i ogranicz przesunięcie ciężaru ciała.",
-    harder:"Wykonuj na krawędzi stopnia (pięta poniżej palców) i dodaj delikatne naprężenia."
-  },
-  {
-    id:"wrist", sec:"calves", name:"Rozciąganie nadgarstków i przedramion", work:true,
-    area:"nadgarstki • przedramiona", difficulty:"Łatwy", sets:"2 × 20–30 s na kierunek",
-    timer:45, video:"63LEj3oP6lA", videoTitle:"Wrist Flexor Stretch",
-    why:"Rozciąga przedramiona i nadgarstki przeciążone pracą przy klawiaturze i myszy.",
-    steps:[
-      "Wyciągnij ramię przed siebie i skieruj dłoń palcami w dół.",
-      "Drugą ręką delikatnie naciągnij palce w swoją stronę — rozciągając przednią część przedramienia.",
-      "Wytrzymaj 20–30 s.",
-      "Zmień kierunek: palce do góry, delikatny nacisk w dół — rozciągając tylną część przedramienia.",
-      "Powtórz na obu rękach."
-    ],
-    feel:"Rozciągnięcie wzdłuż przedramienia — raz z przodu, raz z tyłu.",
-    avoid:"Bólu nadgarstka, drętwienia palców i mocnego docisku.",
-    mistakes:["Zbyt mocny nacisk.","Prostowanie łokcia na siłę.","Pomijanie jednej strony przedramienia."],
-    breath:"Spokojny oddech; delikatnie pogłębiaj na wydechu.",
-    easier:"Zmniejsz nacisk i wykonuj tylko jeden kierunek.",
-    harder:"Dodaj delikatne skręty dłoni i „namiot” (dłonie splecione, łokcie równoległe)."
-  }
+/* ======================= DANE =======================
+   video: ID filmu YouTube (np. z youtube.com/watch?v=ID). Puste = przycisk szukania.
+   sec: czas trwania w sekundach.  side: podpowiedź (np. "każda strona po 30 s").
+   work: true => wchodzi do szybkiej sesji "Reset w pracy". */
+const EX=[
+ {name:"Cat–Cow (kot–krowa)",sec:60,side:"Całe ciało · 8–10 powolnych powtórzeń",video:"fcnv4gyMzf8",area:"cały kręgosłup",difficulty:"Łatwy",work:false,
+  why:"Płynna mobilizacja całego kręgosłupa — od miednicy, przez odcinek lędźwiowy i piersiowy, aż do szyi. Idealne rozgrzanie po długim siedzeniu.",
+  steps:["Klęknij na macie: dłonie pod barkami, kolana pod biodrami.","Wdech — wydłuż kręgosłup, unieś mostek i kość ogonową, wzrok lekko w górę („krowa”).","Wydech — zaokrąglij plecy, podwiń miednicę, brodę zbliż do mostka („kot”).","Poruszaj się wolno i płynnie: jeden wdech i wydech to jedna fala ruchu.","Nie szukaj maksymalnego zakresu — liczy się równomierny ruch."],
+  feel:"Płynną falę ruchu od miednicy przez plecy do szyi; lekkie rozciągnięcie z tyłu tułowia w „kocie”.",
+  avoid:"Ostrego bólu kręgosłupa, gwałtownych szarpnięć i mocnego dociskania skrajnych pozycji.",
+  mistakes:["Ruch tylko klatką, bez pracy miednicy.","Zbyt szybkie tempo i gubienie oddechu.","Napinanie barków do uszu."],
+  breath:"Wdech w „krowie”, wydech w „kocie” — oddech prowadzi ruch.",
+  easier:"Wykonuj siedząc na krześle — tylko odcinek piersiowy i lędźwiowy.",
+  harder:"Zatrzymaj 2–3 s w skrajnej pozycji i dodaj delikatną rotację w „kocie”."},
+ {name:"Chin Tuck (retrakcja szyi)",sec:60,side:"10 powtórzeń po 5 s",video:"O2kkwT6t3R0",area:"szyja · kark · postawa",difficulty:"Łatwy",work:true,
+  why:"Koryguje wysuniętą do przodu głowę i aktywuje głębokie mięśnie szyi — bezpieczne, codzienne ćwiczenie na napięty kark.",
+  steps:["Siądź lub stań wyprostowany, wzrok na wysokości oczu, barki rozluźnione.","Delikatnie cofnij głowę do tyłu, tworząc lekki „podwójny podbródek” — bez pochylania w dół.","Ruch jest poziomy (cofanie), nie schodzenie brodą do mostka.","Przytrzymaj 5 s, rozluźnij i powtórz.","Barki przez cały czas zostają opuszczone."],
+  feel:"Napięcie pod potylicą i z przodu szyi oraz delikatne rozciągnięcie z tyłu karku.",
+  avoid:"Bólu, zawrotów głowy i twardego zaciskania żuchwy.",
+  mistakes:["Zaciskanie zębów i napinanie żuchwy.","Opuszczanie brody zamiast cofania głowy.","Unoszenie barków do uszu."],
+  breath:"Wdech nosem, na wydechu delikatnie pogłębiaj cofnięcie głowy.",
+  easier:"Oprzyj tył głowy o ścianę i wykonuj bardzo mały ruch.",
+  harder:"Wykonaj w leżeniu na plecach lub dodaj łagodny opór gumy za głową."},
+ {name:"Rotacja i pochylenia szyi",sec:45,side:"Każda strona",video:"j3_8btE4X-w",area:"szyja · zakres ruchu",difficulty:"Łatwy",work:false,
+  why:"Poprawia ograniczoną rotację szyi i przywraca płynność ruchu bez agresywnego rozciągania.",
+  steps:["Siądź wyprostowany, barki rozluźnione.","Powoli obróć głowę w lewo do wygodnej granicy, potem w prawo.","Dodaj delikatne pochylenia w bok oraz lekkie zgięcie w przód i wyprost.","Ruch wykonuj wolno i płynnie, w zakresie bez bólu.","Nie pomagaj sobie ręką i nie dociskaj skrajnego zakresu."],
+  feel:"Lekki opór i stopniowe zwiększanie swobody ruchu.",
+  avoid:"Bólu, zawrotów głowy, mrowienia i mocnego ciągnięcia szyi.",
+  mistakes:["Zbyt szybkie, szarpane ruchy.","Wzruszanie barków.","Wymuszanie zakresu mimo bólu."],
+  breath:"Spokojny oddech; na wydechu możesz minimalnie pogłębić zakres.",
+  easier:"Zredukuj zakres o połowę i oprzyj plecy o oparcie.",
+  harder:"Zatrzymaj 2 s na końcu każdej rotacji i wykonaj 10 powolnych powtórzeń."},
+ {name:"Rozciąganie górnej części karku",sec:60,side:"Każda strona po 30 s",video:"xvZ9_5lqcVI",area:"kark · górny czworoboczny",difficulty:"Łatwy",work:true,
+  why:"Ukierunkowane rozciągnięcie górnej części mięśnia czworobocznego — najczęstszego źródła napięcia przy pracy przy biurku.",
+  steps:["Siądź wysoko na krześle; ręką po stronie rozciąganej złap krawędź siedziska.","Opuść bark w dół, oddalając go od ucha.","Przechyl głowę w stronę przeciwną, tak by ucho zbliżało się do ramienia.","Drugą dłoń połóż na głowie tylko jako lekki ciężar — nie ciągnij.","Wytrzymaj 30 s i zmień stronę."],
+  feel:"Rozciągnięcie po bocznej stronie szyi i karku, w kierunku barku.",
+  avoid:"Szarpania głową, unoszenia barku i bólu promieniującego do ręki.",
+  mistakes:["Podciąganie barku do ucha.","Mocne ciągnięcie głowy ręką.","Skręcanie tułowia."],
+  breath:"Wdech; na wydechu rozluźnij bark i pogłęb rozciągnięcie.",
+  easier:"Bez ręki na głowie — tylko przechyl głowę i rozluźnij bark.",
+  harder:"Dodaj lekki skręt i spójrz w dół do pachy dalszej ręki; przytrzymaj 20 s."},
+ {name:"Rozciąganie dźwigacza łopatki",sec:60,side:"Każda strona po 30 s",video:"GSoXPJRnR6E",area:"kark · dźwigacz łopatki",difficulty:"Średni",work:false,
+  why:"Dźwigacz łopatki łączy szyję z łopatką i bywa bardzo napięty przy komputerze — także po stronie „zgrzytającej” łopatki.",
+  steps:["Siądź wyprostowany; obróć głowę o ok. 45° w stronę rozciąganą.","Opuść wzrok w kierunku pachy po stronie rozciąganej („do kieszeni”).","Delikatnie pochyl głowę; ręką możesz złapać siedzisko, by opuścić bark.","Drugą dłoń połóż na głowie jako lekki ciężar (opcjonalnie).","Wytrzymaj 30 s i zmień stronę."],
+  feel:"Rozciągnięcie z tyłu i boku szyi, schodzące w stronę łopatki.",
+  avoid:"Silnego nacisku na głowę i bólu promieniującego do ręki.",
+  mistakes:["Patrzenie w przód zamiast w dół do pachy.","Utrzymywanie napiętego barku.","Zbyt mocny docisk ręką."],
+  breath:"Powolny, spokojny oddech; na wydechu rozluźniaj bark.",
+  easier:"Bez ręki na głowie i z mniejszym skrętem szyi.",
+  harder:"Dodaj delikatną rotację tułowia w stronę skrętu szyi."},
+ {name:"Thread the Needle (przeciąganie nici)",sec:75,side:"Każda strona",video:"blBC6222kuU",area:"odcinek piersiowy · łopatki",difficulty:"Średni",work:false,
+  why:"Mobilizuje rotację odcinka piersiowego i otwiera barki — świetne na sztywność „między łopatkami”.",
+  steps:["Klęknij na czworaka: dłonie pod barkami, kolana pod biodrami.","Unieś prawą rękę w górę i w bok, otwierając klatkę — wzrok za ręką.","Następnie „przepleć” prawą rękę pod lewą, kładąc bark i bok głowy na macie.","Wytrzymaj 2–3 s w dole, poczuj rozciągnięcie między łopatkami.","Wróć i powtórz na drugą stronę."],
+  feel:"Rozciągnięcie między łopatkami i rotację w górnej części pleców.",
+  avoid:"Skręcania lędźwi siłą, bólu barku i zbyt szybkiego tempa.",
+  mistakes:["Odpychanie się głową zamiast barkiem.","Podnoszenie bioder.","Ruch całym tułowiem zamiast odcinkiem piersiowym."],
+  breath:"Wdech w górze, wydech podczas przenoszenia ręki pod siebie.",
+  easier:"Przenieś rękę tylko na tyle, na ile pozwala komfort — bez kładzenia barku na macie.",
+  harder:"W górnej pozycji zatrzymaj 3 s i dodatkowo oprzyj dłoń za plecami."},
+ {name:"Open Book (otwarta książka)",sec:75,side:"Każda strona",video:"OW6YHlxY6JI",area:"odcinek piersiowy · klatka",difficulty:"Średni",work:false,
+  why:"Otwiera klatkę piersiową i poprawia rotację odcinka piersiowego — działa na sztywność od siedzenia i zgarbionej postawy.",
+  steps:["Połóż się na boku; biodra i kolana zgięte ok. 90°.","Wyciągnij ramiona przed siebie, dłonie razem.","Górną rękę otwórz w stronę sufitu i dalej za siebie, wodząc wzrokiem za dłonią.","Kolana trzymaj razem — ruch pochodzi z odcinka piersiowego.","Wytrzymaj 3–5 s na końcu, wróć i powtórz."],
+  feel:"Rozciągnięcie klatki piersiowej i wyraźny ruch między łopatkami.",
+  avoid:"Odrywania kolan i skręcania odcinka lędźwiowego.",
+  mistakes:["Otwieranie nóg razem z ręką.","Wymuszanie zakresu siłą.","Wstrzymywanie oddechu."],
+  breath:"Wdech w otwarciu, wydech w powrocie do środka.",
+  easier:"Oprzyj kolano/dłoń na poduszce, ograniczając rotację.",
+  harder:"Zatrzymaj dłużej (do 10 s) i dodaj pogłębienie na wydechu."},
+ {name:"Wyprost odcinka piersiowego (wałek/piłka)",sec:60,side:"2–3 miejsca na plecach",video:"H4u3J3Spcvw",area:"odcinek piersiowy · barki",difficulty:"Średni",work:false,
+  why:"Przywraca wyprost sztywnego odcinka piersiowego — kluczowe przy zaokrąglonej górnej części pleców.",
+  steps:["Połóż wałek (lub piłkę) poprzecznie pod górną częścią pleców.","Podeprzyj głowę splecionymi dłońmi za karkiem, łokcie blisko siebie.","Delikatnie wykonaj wyprost grzbietu nad wałkiem — bez wyginania lędźwi.","Przesuń wałek o kilka centymetrów i powtórz w 2–3 miejscach.","Nie roluj po odcinku lędźwiowym ani po szyi."],
+  feel:"Ruch i rozciągnięcie w górnej części pleców, między łopatkami.",
+  avoid:"Przeprostu lędźwi, bólu oraz rolowania po krzyżu i szyi.",
+  mistakes:["Wypychanie żeber w górę zamiast wyprostu pleców.","Trzymanie łokci szeroko.","Zbyt szybkie tempo."],
+  breath:"Wdech przed wyprostem, wydech w trakcie odchylenia do tyłu.",
+  easier:"Użyj zwiniętego ręcznika zamiast wałka i ogranicz zakres.",
+  harder:"W każdej pozycji zatrzymaj 5 s i wykonaj kilka oddechów w rozciągnięciu."},
+ {name:"Rozciąganie klatki w drzwiach",sec:60,side:"Oburamiennie",video:"CYMIdBCSIKM",area:"klatka · barki",difficulty:"Łatwy",work:true,
+  why:"Otwiera przód klatki i barki po godzinach przy komputerze — wystarczą drzwi, więc pasuje też do pracy.",
+  steps:["Stań w otwartych drzwiach; oprzyj przedramiona o framugę na wysokości barków.","Zrób mały krok do przodu jedną nogą.","Delikatnie przenieś ciężar do przodu, otwierając klatkę.","Utrzymuj żebra „spokojnie” — nie wyginaj lędźwi.","Wytrzymaj 30–45 s, oddychając swobodnie."],
+  feel:"Wyraźne, ale komfortowe rozciągnięcie z przodu klatki i barków.",
+  avoid:"Unoszenia barków, przeprostu lędźwi i bólu z przodu barku.",
+  mistakes:["Wysuwanie głowy do przodu.","Podnoszenie barków do uszu.","Wyginanie pleców w łuk."],
+  breath:"Wdech; na wydechu delikatnie pogłębiaj otwarcie klatki.",
+  easier:"Zrób to na niższej wysokości (łokcie niżej) i z mniejszym krokiem.",
+  harder:"Podnieś łokcie wyżej, zatrzymaj 45 s i zmieniaj wysokość ramion."},
+ {name:"Rozciąganie gumy (band pull-apart)",sec:60,side:"12–15 powtórzeń",video:"stwYTTPXubo",area:"barki · łopatki · postawa",difficulty:"Średni",work:true,
+  why:"Wzmacnia mięśnie cofające łopatki — przeciwdziała zgarbionej postawie i ustawia barki do tyłu. Świetne uzupełnienie rozciągania.",
+  steps:["Chwyć gumę oburącz przed sobą na wysokości barków, dłonie na szerokość barków.","Wyciągnij ramiona na wprost, łokcie niemal proste.","Rozciągnij gumę na boki, zbliżając łopatki do siebie.","Powoli i kontrolowanie wróć do początku.","Barki trzymaj nisko — nie unoś ich do uszu."],
+  feel:"Napięcie między łopatkami i w górnej części pleców (to ćwiczenie wzmacniające, nie rozciągające).",
+  avoid:"Unoszenia barków do uszu, wysuwania głowy do przodu i zbyt mocnej gumy.",
+  mistakes:["Zbyt mocna guma i praca samymi barkami.","Wypinanie żeber.","Szybkie, sprężynujące ruchy."],
+  breath:"Wydech przy rozciąganiu gumy, wdech przy powrocie.",
+  easier:"Użyj słabszej gumy lub wykonuj ruch jedną ręką, drugą trzymając nieruchomo.",
+  harder:"Użyj mocniejszej gumy, zatrzymaj 2 s w pełnym rozciągnięciu i rób ruch pod kątem (w górę/dół)."},
+ {name:"Przenoszenie gumy nad głową (pass-through)",sec:60,side:"10 powolnych przejść",video:"riVxa9By-pM",area:"barki · rotacja",difficulty:"Średni",work:false,
+  why:"Poprawia mobilność obręczy barkowej — pomaga przy sztywności i „zgrzytaniu” w okolicy łopatek.",
+  steps:["Chwyć gumę szeroko oburącz przed sobą.","Utrzymując proste łokcie, unieś ramiona i przenieś gumę nad głowę oraz za plecy.","Nie uginaj łokci — jeśli musisz, chwyć gumę szerzej.","Wróć tą samą drogą do przodu.","Wykonuj powoli, w zakresie bez bólu."],
+  feel:"Ruch i rozciągnięcie w barkach oraz otwieranie przodu klatki.",
+  avoid:"Bólu barku, uginania łokci i zbyt wąskiego chwytu.",
+  mistakes:["Zbyt wąski chwyt i wymuszanie zakresu.","Uginanie łokci.","Wypychanie żeber do przodu."],
+  breath:"Spokojny oddech; nie wstrzymuj powietrza.",
+  easier:"Chwyć gumę bardzo szeroko albo użyj ręcznika lub kija.",
+  harder:"Stopniowo zwężaj chwyt i zatrzymuj na 2 s za plecami."},
+ {name:"Klęczące rozciąganie zginaczy biodra",sec:75,side:"Każda strona po 30–45 s",video:"F55tzqJggAY",area:"zginacze biodra · przód uda",difficulty:"Średni",work:false,
+  why:"Rozciąga zginacze biodra skrócone przez wielogodzinne siedzenie — często przyczyniają się do napięcia odcinka lędźwiowego.",
+  steps:["Klęknij na jednym kolanie (podłóż coś miękkiego), druga stopa z przodu.","Napnij pośladek nogi klęczącej i delikatnie podwiń miednicę.","Utrzymując tułów pionowo, przesuń miednicę kilka centymetrów do przodu.","Trzymaj napięty pośladek — to chroni odcinek lędźwiowy.","Wytrzymaj 30–45 s i zmień stronę."],
+  feel:"Rozciągnięcie z przodu biodra i górnej części uda nogi klęczącej.",
+  avoid:"Wypychania bioder przez wyginanie lędźwi, bólu kolana i przeprostu.",
+  mistakes:["Wyginanie pleców zamiast pracy w biodrze.","Brak napięcia pośladka.","Zbyt mocne wypychanie miednicy."],
+  breath:"Wdech; na wydechu delikatnie przesuń miednicę do przodu.",
+  easier:"Trzymaj ręce na krześle dla podparcia i ogranicz przesunięcie miednicy.",
+  harder:"Podnieś ramię strony rozciąganej i przechyl tułów w bok lub oprzyj stopę na podwyższeniu („couch”)."},
+ {name:"90/90 Stretch (biodra)",sec:90,side:"Każda strona po 40 s",video:"t4Zz6-aG8Iw",area:"biodra · rotacja",difficulty:"Średni/Trudny",work:false,
+  why:"Praca nad ograniczonym zakresem rotacji biodra — dokładnie tym, co usztywnia się przy siedzeniu.",
+  steps:["Usiądź na macie; jedną nogę zegnij do przodu pod kątem 90°, drugą z boku również pod 90°.","Utrzymuj klatkę wysoko i wydłuż kręgosłup.","Powoli pochyl tułów nad przednią nogą, utrzymując plecy proste.","Zatrzymaj 20–30 s, poczuj pracę w tylnej części biodra.","Zmień stronę; w razie potrzeby podeprzyj biodro poduszką."],
+  feel:"Pracę w tylnej i bocznej części biodra, czasem także w środku.",
+  avoid:"Forsowania kolan, zapadania tułowia i bólu kolana.",
+  mistakes:["Zaokrąglanie pleców.","Zbyt krótkie zatrzymanie.","Nacisk na kolano ręką."],
+  breath:"Wydłużony wydech pomaga pogłębić pochylenie tułowia.",
+  easier:"Podnieś biodra na poduszce (książce) i nie ustawiaj kolan idealnie w 90°.",
+  harder:"Przechodź płynnie z jednej strony na drugą (hip switch), utrzymując klatkę wysoko."},
+ {name:"Figure-4 / rozciąganie pośladka",sec:75,side:"Każda strona po 30–45 s",video:"2VE_NLcNMvQ",area:"pośladek · rotatory biodra",difficulty:"Łatwy",work:false,
+  why:"Rozciąga pośladek i głębokie rotatory biodra — pomaga przy napięciu pośladka i sztywności biodra.",
+  steps:["Połóż się na plecach, nogi ugięte, stopy na macie.","Załóż kostkę jednej nogi na udo drugiej (jak „czwórka”).","Przełóż ręce za udo nogi podporowej i przyciągnij ją do klatki.","Utrzymuj stopę założonej nogi „aktywną” (palce do góry).","Wytrzymaj 30–45 s i zmień stronę."],
+  feel:"Wyraźne rozciągnięcie w pośladku i tylnej części biodra.",
+  avoid:"Bólu kolana, ciągnięcia kolana na siłę i wypychania biodra.",
+  mistakes:["Zbyt mocne przyciąganie.","Rozluźnienie stopy założonej nogi.","Asymetria — jedno biodro wyżej niż drugie."],
+  breath:"Spokojny oddech; na wydechu delikatnie przyciągnij nogę.",
+  easier:"Wykonaj na siedząco („czwórka” w krześle), pochylając się delikatnie do przodu.",
+  harder:"Zatrzymaj dłużej (60 s) i dodaj delikatne, małe pogłębienia/powroty."},
+ {name:"Rozciąganie dwugłowych z gumą",sec:75,side:"Każda strona po 45 s",video:"KAr101d6jHU",area:"dwugłowe uda · tylna taśma",difficulty:"Łatwy/Średni",work:false,
+  why:"Bezpieczna praca nad sztywnością tylnej taśmy bez wymuszania skłonu kręgosłupa. To Twoja główna sztywność — dotknięcie palców przyjdzie z czasem.",
+  steps:["Połóż się na plecach; założ gumę (lub ręcznik) na śródstopie jednej nogi.","Unieś nogę w górę, kolano lekko ugięte; druga noga leży wyprostowana na macie.","Delikatnie prostuj kolano do momentu wyraźnego, ale komfortowego napięcia.","Zatrzymaj 30 s; w tym czasie wykonaj 10–15 ruchów stopy (zgięcie/wyprost).","Zmień stronę."],
+  feel:"Napięcie z tyłu uda (dwugłowe), bez bólu pod kolanem.",
+  avoid:"Agresywnego ciągnięcia, zaokrąglania lędźwi i bólu pleców.",
+  mistakes:["Dopychanie kolana na siłę.","Oderwanie drugiej nogi od podłogi.","Dźwiganie barków i napinanie karku."],
+  breath:"Wydłużony, spokojny wydech w trakcie rozciągania.",
+  easier:"Zegnij kolano wyraźniej i zmniejsz zakres (zostaw lekki opór).",
+  harder:"Wyprostuj kolano bliżej pełnego wyprostu i dodaj naprzemienne napięcia (naciśnij nogą w gumę 5 s, rozluźnij)."},
+ {name:"Rozciąganie łydki przy ścianie",sec:60,side:"Każda noga po 30 s",video:"4fwN8uiF7z8",area:"łydki · kostka",difficulty:"Łatwy",work:false,
+  why:"Rozluźnia łydki i poprawia ruch w kostce — ułatwia głębszy skłon i prawidłowy chód.",
+  steps:["Stań twarzą do ściany; dłonie na ścianie na wysokości barków.","Cofnij jedną nogę, utrzymując jej piętę na podłodze, palce do przodu.","Przenieś ciężar do przodu, ugnij przednią nogę; poczuj rozciągnięcie łydki nogi tylnej.","Trzymaj tylną piętę na ziemi; zmień nogę.","Lekko zegnij tylną nogę, by rozciągnąć mięsień płaszczkowaty (niżej)."],
+  feel:"Rozciągnięcie łydki — wyżej przy prostym kolanie, niżej przy zgiętym.",
+  avoid:"Odrywania pięty, zapadania stopy do środka i bólu ścięgna Achillesa.",
+  mistakes:["Odrywanie tylnej pięty.","Kręcenie stopą na zewnątrz.","Zbyt duży krok."],
+  breath:"Spokojny oddech; na wydechu delikatnie przenieś ciężar do przodu.",
+  easier:"Zmniejsz krok i ogranicz przesunięcie ciężaru ciała.",
+  harder:"Wykonuj na krawędzi stopnia (pięta poniżej palców) i dodaj delikatne naprężenia."},
+ {name:"Rozciąganie nadgarstków i przedramion",sec:45,side:"Oba kierunki, obie ręce",video:"63LEj3oP6lA",area:"nadgarstki · przedramiona",difficulty:"Łatwy",work:true,
+  why:"Rozciąga przedramiona i nadgarstki przeciążone pracą przy klawiaturze i myszy.",
+  steps:["Wyciągnij ramię przed siebie i skieruj dłoń palcami w dół.","Drugą ręką delikatnie naciągnij palce w swoją stronę — rozciągając przednią część przedramienia.","Wytrzymaj 20–30 s.","Zmień kierunek: palce do góry, delikatny nacisk w dół — rozciągając tylną część przedramienia.","Powtórz na obu rękach."],
+  feel:"Rozciągnięcie wzdłuż przedramienia — raz z przodu, raz z tyłu.",
+  avoid:"Bólu nadgarstka, drętwienia palców i mocnego docisku.",
+  mistakes:["Zbyt mocny nacisk.","Prostowanie łokcia na siłę.","Pomijanie jednej strony przedramienia."],
+  breath:"Spokojny oddech; delikatnie pogłębiaj na wydechu.",
+  easier:"Zmniejsz nacisk i wykonuj tylko jeden kierunek.",
+  harder:"Dodaj delikatne skręty dłoni i „namiot” (dłonie splecione, łokcie równoległe)."}
 ];
 
-/* ============================ RENDER ============================ */
-const fmt = s => Math.floor(s/60) + ":" + String(s%60).padStart(2,"0");
-const fmtMin = s => { const m = Math.round(s/60*10)/10; return (Number.isInteger(m)?m:m.toFixed(1)) + " min"; };
-
-function cardHTML(ex, idx){
-  const sec = SECMAP[ex.sec] || {color:"#4f46e5"};
-  return `
-  <article class="exercise" id="ex-${ex.id}" data-id="${ex.id}" data-sec="${ex.sec}" data-work="${ex.work?1:0}" data-dur="${ex.timer}" style="--sec:${sec.color}">
-    <div class="ex-head">
-      <div>
-        <div class="num">Ćwiczenie ${idx+1} / ${EX.length} · ${sec.label||""}</div>
-        <h3>${ex.name}</h3>
-        <div class="tags">
-          <span class="tag area">${ex.area}</span>
-          <span class="tag">🎚️ ${ex.difficulty}</span>
-          <span class="tag">🔁 ${ex.sets}</span>
-        </div>
-      </div>
-      <div class="timer">
-        <div class="tval">${fmt(ex.timer)}</div>
-        <div class="tbtns">
-          <button class="tbtn play" data-act="play" aria-label="Start / pauza">▶</button>
-          <button class="tbtn reset" data-act="reset" aria-label="Reset czasu">↺</button>
-        </div>
-      </div>
-    </div>
-    <p class="why"><strong>Po co to ćwiczenie:</strong> ${ex.why}</p>
-    <div class="cols">
-      <div class="col">
-        <h4>Wykonanie krok po kroku</h4>
-        <ol>${ex.steps.map(s=>`<li>${s}</li>`).join("")}</ol>
-      </div>
-      <div class="col">
-        <div class="box feel"><h5>✅ Powinieneś czuć</h5><p>${ex.feel}</p></div>
-        <div class="box avoid"><h5>⛔ Czego unikać</h5><p>${ex.avoid}</p></div>
-        <div class="box mistakes"><h5>⚠️ Najczęstsze błędy</h5><ul>${ex.mistakes.map(m=>`<li>${m}</li>`).join("")}</ul></div>
-        <div class="box breath"><h5>🫁 Oddech</h5><p>${ex.breath}</p></div>
-        <div class="box vary"><h5>🔀 Wersje</h5><p><strong>Łatwiej:</strong> ${ex.easier}</p><p><strong>Trudniej:</strong> ${ex.harder}</p></div>
-      </div>
-    </div>
-    <div class="video-wrap">
-      <div class="video" data-vid="${ex.video}" role="button" tabindex="0" aria-label="Odtwórz film: ${ex.name}">
-        <img loading="lazy" src="https://i.ytimg.com/vi/${ex.video}/hqdefault.jpg" alt="Miniatura filmu: ${ex.name}">
-        <span class="playicon" aria-hidden="true"></span>
-      </div>
-      <a class="yt-btn" href="https://www.youtube.com/watch?v=${ex.video}" target="_blank" rel="noopener">▶ Otwórz na YouTube</a>
-      <p class="vsrc">Wideo (YouTube): ${ex.videoTitle}</p>
-    </div>
-    <button class="complete" data-act="done">✓ Oznacz jako wykonane</button>
-  </article>`;
-}
-
-function render(){
-  let html = "", lastSec = null, n = 0;
-  EX.forEach(ex=>{
-    if(ex.sec !== lastSec){
-      const sec = SECMAP[ex.sec];
-      html += `<h2 class="sec-title" data-sec="${ex.sec}" style="--sec:${sec.color}"><span class="dot"></span>${sec.label}</h2>`;
-      lastSec = ex.sec;
-    }
-    html += cardHTML(ex, n);
-    n++;
-  });
-  document.getElementById("list").innerHTML = html;
-  document.getElementById("totalCount").textContent = EX.length;
-  document.getElementById("workNote").classList.toggle("hide", activeFilter !== "work");
-}
-
-/* ============================ TIMER ============================ */
-let actx = null;
-function beep(){
-  try{
-    actx = actx || new (window.AudioContext || window.webkitAudioContext)();
-    if(actx.state === "suspended") actx.resume();
-    const t = actx.currentTime;
-    [0, 0.22].forEach(off=>{
-      const o = actx.createOscillator(), g = actx.createGain();
-      o.type = "sine"; o.frequency.value = 880;
-      g.gain.setValueAtTime(0.0001, t+off);
-      g.gain.exponentialRampToValueAtTime(0.28, t+off+0.02);
-      g.gain.exponentialRampToValueAtTime(0.0001, t+off+0.18);
-      o.connect(g); g.connect(actx.destination);
-      o.start(t+off); o.stop(t+off+0.2);
-    });
-  }catch(e){}
-}
-function makeTimer(card){
-  const total = parseInt(card.dataset.dur, 10);
-  let remaining = total, running = false, h = null;
-  const tval = card.querySelector(".tval");
-  const playBtn = card.querySelector('[data-act="play"]');
-  const api = {
-    render(){ tval.textContent = fmt(remaining); },
-    stop(){ running = false; clearInterval(h); h = null; playBtn.textContent = "▶"; card.classList.remove("running"); },
-    start(){
-      if(running) return;
-      if(remaining <= 0) remaining = total;
-      running = true; playBtn.textContent = "❚❚"; card.classList.add("running");
-      h = setInterval(()=>{
-        remaining--; api.render();
-        if(remaining <= 0){
-          api.stop(); tval.textContent = "✓"; beep();
-          card.classList.add("timeup");
-          setTimeout(()=>card.classList.remove("timeup"), 1600);
-          setTimeout(()=>{ remaining = total; api.render(); }, 2600);
-        }
-      }, 1000);
-    },
-    toggle(){ running ? api.stop() : api.start(); },
-    reset(){ api.stop(); remaining = total; card.classList.remove("timeup"); api.render(); }
-  };
-  api.render();
-  return api;
-}
-const timers = new WeakMap();
-
+/* ======================= POMOCNICZE ======================= */
+const $=id=>document.getElementById(id);
 const IS_FILE = location.protocol === "file:";
 function embedUrl(id){
-  const p = new URLSearchParams({rel:"0", modestbranding:"1", playsinline:"1"});
-  if(!IS_FILE) p.set("origin", location.origin); // brak/mismatch origin => błąd 153
-  return "https://www.youtube.com/embed/" + id + "?" + p.toString();
+  const p=new URLSearchParams({rel:"0",modestbranding:"1",playsinline:"1"});
+  if(!IS_FILE) p.set("origin",location.origin);        // brak/mismatch origin => błąd 153
+  return "https://www.youtube.com/embed/"+id+"?"+p.toString();
 }
-function loadVideo(el){
-  if(el.dataset.loaded) return;
-  el.dataset.loaded = "1";
-  if(IS_FILE){
-    el.classList.add("fileblock");
-    const pi = el.querySelector(".playicon"); if(pi) pi.remove();
-    const note = document.createElement("div");
-    note.className = "vfallback";
-    note.innerHTML = "🔒 Osadzone filmy YouTube nie działają, gdy strona jest otwarta wprost jako plik (file://) — to właśnie źródło błędu 153. Otwórz stronę przez adres http(s): wdróż ją na GitHub Pages albo uruchom lokalnie <b>python -m http.server</b> i wejdź na <b>http://localhost:8000</b>. Obejrzyj film także przyciskiem „Otwórz na YouTube”.";
-    el.after(note);
-    return;
+function videoHTML(e){
+  if(!IS_FILE && e.video){
+    return `<iframe src="${embedUrl(e.video)}" title="${e.name}" referrerpolicy="strict-origin-when-cross-origin"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
   }
-  el.classList.add("loaded");
-  el.innerHTML = `<iframe src="${embedUrl(el.dataset.vid)}" title="Demonstracja ćwiczenia" referrerpolicy="strict-origin-when-cross-origin"
-     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-     allowfullscreen></iframe>`;
+  const q=encodeURIComponent(e.name+' rozciąganie');
+  const href = IS_FILE && e.video ? `https://www.youtube.com/watch?v=${e.video}` : `https://www.youtube.com/results?search_query=${q}`;
+  const head = IS_FILE ? "Osadzone wideo nie działa przy otwarciu pliku jako <b>file://</b> (błąd 153). Otwórz stronę przez http(s) lub obejrzyj film bezpośrednio. " : "";
+  const mid = e.video ? "Film instruktażowy:" : "Brak wideo dla:";
+  return `<div class="ph"><div>${head}${mid} ${e.name}</div><a href="${href}" target="_blank" rel="noopener">▶ Obejrzyj na YouTube</a></div>`;
+}
+function bodyHTML(e){
+  return `<div class="dwrap">
+    <div class="dbox dn"><h4>Wykonanie krok po kroku</h4><ol>${e.steps.map(s=>`<li>${s}</li>`).join("")}</ol></div>
+    <div class="dbox feel"><h4>✅ Powinieneś czuć</h4><p>${e.feel}</p></div>
+    <div class="dbox avoid"><h4>⛔ Czego unikać</h4><p>${e.avoid}</p></div>
+    <div class="dbox mistakes"><h4>⚠️ Najczęstsze błędy</h4><ul>${e.mistakes.map(m=>`<li>${m}</li>`).join("")}</ul></div>
+    <div class="dbox breath"><h4>🫁 Oddech</h4><p>${e.breath}</p></div>
+    <div class="dbox vary"><h4>🔀 Wersje</h4><p><strong>Łatwiej:</strong> ${e.easier}</p><p><strong>Trudniej:</strong> ${e.harder}</p></div>
+    ${e.video?`<a class="yt" href="https://www.youtube.com/watch?v=${e.video}" target="_blank" rel="noopener">▶ Otwórz film na YouTube</a>`:""}
+  </div>`;
+}
+function detailsHTML(e,k){
+  return `<details class="acc"><summary>${k}. ${e.name} <span class="mute">· ${e.sec} s</span></summary>
+    <div class="dwrap" style="padding-top:0">
+      <p class="mute" style="margin:0">${e.area} · ${e.difficulty} · ${e.side}</p>
+      <p style="margin:0"><strong>Po co:</strong> ${e.why}</p>
+      ${bodyHTML(e).replace('<div class="dwrap">','').replace(/<\/div>$/,'')}
+    </div></details>`;
 }
 
-/* ============================ STAN / POSTĘP ============================ */
-const KEY = "desk-reset-done-v3";
-let done = new Set();
-try{ done = new Set(JSON.parse(localStorage.getItem(KEY) || "[]")); }catch(e){ done = new Set(); }
-function save(){ try{ localStorage.setItem(KEY, JSON.stringify([...done])); }catch(e){} }
+/* ======================= STAN SESJI ======================= */
+let playlist=[], LAST=0, idx=0, left=0, dur=0, tick=null, running=false, mode='ex';
+let brk=10, sound=true, voice=true, actx=null, wl=null;
 
-function paint(){
-  document.querySelectorAll(".exercise").forEach(card=>{
-    const on = done.has(card.dataset.id);
-    card.classList.toggle("done", on);
-    card.querySelector(".complete").textContent = on ? "✓ Wykonane" : "✓ Oznacz jako wykonane";
-  });
-  const n = done.size, total = EX.length;
-  const pct = total ? Math.round(n/total*100) : 0;
-  document.getElementById("doneCount").textContent = n;
-  document.getElementById("bar").style.width = pct + "%";
-  document.getElementById("pcount").textContent = pct + "%";
+/* dźwięk (generowany w przeglądarce, bez plików) */
+function beep(f,d,t=0){
+  if(!sound||!actx) return;
+  const o=actx.createOscillator(),g=actx.createGain(),s=actx.currentTime+t;
+  o.frequency.value=f;o.connect(g);g.connect(actx.destination);
+  g.gain.setValueAtTime(.0001,s);g.gain.exponentialRampToValueAtTime(.35,s+.02);g.gain.exponentialRampToValueAtTime(.0001,s+d);
+  o.start(s);o.stop(s+d+.05);
 }
+const snd={tick:()=>beep(660,.12),go:()=>{beep(880,.15);beep(1175,.3,.18)},end:()=>{beep(1175,.2);beep(1175,.2,.3);beep(1568,.5,.6)}};
 
-/* ============================ FILTRY ============================ */
-let activeFilter = "all";
-function buildFilters(){
-  const box = document.getElementById("filters");
-  const items = [
-    {key:"all", label:"Wszystkie", always:true},
-    {key:"work", label:"⚡ Reset w pracy · 5 min", always:true}
-  ];
-  SECTIONS.forEach(s=>{
-    if(EX.some(e=>e.sec===s.key)) items.push({key:s.key, label:s.label});
-  });
-  box.innerHTML = items.map((it,i)=>
-    `<button class="chip${it.key===activeFilter?" active":""}" data-filter="${it.key}">${it.label}</button>`
-  ).join("");
+/* głos */
+let sayT=null;
+function say(t,delay=0){
+  if(!voice||!('speechSynthesis' in window)) return;
+  clearTimeout(sayT);
+  sayT=setTimeout(()=>{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='pl-PL';speechSynthesis.speak(u)},delay);
 }
-function applyFilter(key){
-  activeFilter = key;
-  document.querySelectorAll(".chip").forEach(c=>c.classList.toggle("active", c.dataset.filter===key));
-  document.querySelectorAll(".exercise").forEach(card=>{
-    const show = key==="all" ? true
-      : key==="work" ? card.dataset.work === "1"
-      : card.dataset.sec === key;
-    card.classList.toggle("hide", !show);
-  });
-  document.querySelectorAll(".sec-title").forEach(h=>{
-    const sec = h.dataset.sec;
-    const any = [...document.querySelectorAll(`.exercise[data-sec="${sec}"]`)].some(c=>!c.classList.contains("hide"));
-    h.classList.toggle("hide", !any);
-  });
-  document.getElementById("workNote").classList.toggle("hide", key!=="work");
+function hush(){clearTimeout(sayT);if('speechSynthesis' in window)speechSynthesis.cancel()}
+
+/* ekran zawsze włączony */
+async function lock(){try{if('wakeLock' in navigator&&!wl)wl=await navigator.wakeLock.request('screen'),wl.addEventListener('release',()=>wl=null)}catch(e){}}
+function unlock(){try{wl&&wl.release()}catch(e){}wl=null}
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&!$('run').hidden)lock()});
+
+/* motyw */
+const root=document.documentElement;
+function applyTheme(t){root.dataset.theme=t;$('theme').textContent=t==='dark'?'☀️':'🌙';}
+let theme=localStorage.getItem('desk-theme')||((matchMedia&&matchMedia('(prefers-color-scheme:dark)').matches)?'dark':'light');
+applyTheme(theme);
+$('theme').onclick=()=>{theme=theme==='dark'?'light':'dark';localStorage.setItem('desk-theme',theme);applyTheme(theme)};
+
+/* ======================= START ======================= */
+function intro(){
+  const n=playlist.length;
+  const sec=playlist.reduce((a,e)=>a+e.sec,0)+brk*Math.max(0,n-1)+3;
+  $('intro').textContent=`${n} ćwiczeń, około ${Math.ceil(sec/60)} min${brk?" (z przerwami)":""}. Znajdź miejsce, w którym możesz się swobodnie ruszać.`;
 }
-
-/* ============================ ZDARZENIA ============================ */
-function init(){
-  render();
-  buildFilters();
-  document.querySelectorAll(".exercise").forEach(card=> timers.set(card, makeTimer(card)));
-  paint();
-
-  if(IS_FILE){
-    const b = document.createElement("div");
-    b.className = "filebanner";
-    b.innerHTML = "⚠️ <strong>Strona otwarta lokalnie jako plik (file://).</strong> Osadzone filmy YouTube wymagają adresu http(s) — inaczej pojawia się błąd 153. Wdróż stronę na GitHub Pages albo uruchom lokalny serwer, np. <code>python -m http.server</code>, i otwórz <code>http://localhost:8000</code>. Przyciski „Otwórz na YouTube” działają zawsze.";
-    document.querySelector("main .wrap").prepend(b);
-  }
-
-  document.getElementById("filters").addEventListener("click", e=>{
-    const chip = e.target.closest(".chip");
-    if(chip) applyFilter(chip.dataset.filter);
-  });
-
-  const list = document.getElementById("list");
-  list.addEventListener("click", e=>{
-    const video = e.target.closest(".video");
-    if(video){ loadVideo(video); return; }
-    const card = e.target.closest(".exercise");
-    if(!card) return;
-    if(e.target.closest('[data-act="done"]')){
-      const id = card.dataset.id;
-      done.has(id) ? done.delete(id) : done.add(id);
-      save(); paint();
-      return;
-    }
-    if(e.target.closest('[data-act="play"]')){ timers.get(card).toggle(); return; }
-    if(e.target.closest('[data-act="reset"]')){ timers.get(card).reset(); return; }
-  });
-  list.addEventListener("keydown", e=>{
-    if((e.key==="Enter" || e.key===" ") && e.target.classList.contains("video")){ e.preventDefault(); loadVideo(e.target); }
-  });
+function renderList(){
+  $('list').innerHTML=playlist.map((e,k)=>`<li><span class="n">${k+1}</span><span><span class="name">${e.name}</span><span class="sub">${e.side}</span></span><span class="t">${e.sec} s</span></li>`).join('');
 }
-init();
+function setRoutine(r){
+  playlist = r==='work' ? EX.filter(e=>e.work) : EX.slice();
+  LAST=playlist.length-1;
+  renderList(); intro();
+}
+function seg(id,fn){
+  $(id).onclick=e=>{const b=e.target.closest('button');if(!b)return;
+    [...$(id).children].forEach(x=>x.setAttribute('aria-pressed',String(x===b)));fn(b)};
+}
+seg('rt',b=>{if(!$('run').hidden)return;setRoutine(b.dataset.r)});
+seg('brk',b=>{brk=+b.dataset.s;intro()});
+seg('voc',b=>{voice=b.dataset.v==='1';if(voice)say('Głos włączony');else hush()});
+seg('snd',b=>{sound=b.dataset.v==='1';if(actx===null&&sound)actx=new (window.AudioContext||window.webkitAudioContext)();snd.tick()});
+$('details').innerHTML=EX.map((e,k)=>detailsHTML(e,k+1)).join('');
+setRoutine('full');
+
+/* ======================= EKRANY / TIMER ======================= */
+const C=2*Math.PI*76;
+$('ring').style.strokeDasharray=C;
+function show(id){['start','run','end'].forEach(s=>$(s).hidden=s!==id);window.scrollTo(0,0)}
+function draw(){$('time').textContent=left;$('ring').style.strokeDashoffset=C*(1-left/dur)}
+function stop(){clearInterval(tick);running=false}
+
+function load(k,m='ex',auto=false){
+  stop();idx=k;mode=m;const e=playlist[idx],br=m!=='ex',pr=m==='pr';
+  dur=left=pr?3:br?brk:e.sec;
+  if(br&&brk<=0&&m==='br'){return start()}
+  $('run').classList.toggle('isbreak',br);
+  $('hint').textContent=pr?"Start za chwilę":br?"Przerwa":e.side;
+  $('name').textContent=pr?"Przygotuj się":br?"Odpocznij":e.name;
+  $('chips').innerHTML=(br||pr)?"":`<span class="chip">${e.area}</span><span class="chip">🎚️ ${e.difficulty}</span>`;
+  $('desc').textContent=pr?("Pierwsze ćwiczenie: "+e.name+". "+e.why):br?("Następne: "+e.name+". "+e.why):e.why;
+  $('runDetails').innerHTML=bodyHTML(e);
+  $('count').textContent=(br?"Za chwilę ":"")+(idx+1)+" z "+playlist.length;
+  $('bar').style.width=(idx/playlist.length*100)+"%";
+  $('prev').disabled=br||idx===0;
+  $('next').textContent=pr?"Pomiń odliczanie":br?"Pomiń przerwę":(idx===LAST?"Zakończ sesję":"Następne ćwiczenie");
+  $('next').classList.remove('pulse');
+  $('video').innerHTML=videoHTML(e);
+  $('toggle').textContent="Start";
+  draw();
+  say(pr?"Przygotuj się. Pierwsze ćwiczenie: "+e.name:br?"Przerwa. Następne: "+e.name:e.name+(e.side?". "+e.side:""),auto?1000:0);
+  if(auto)start();
+}
+function start(){
+  if(left<=0)left=dur;
+  running=true;$('toggle').textContent="Pauza";draw();
+  tick=setInterval(()=>{
+    left--;draw();
+    if(left>0&&left<=3)snd.tick();
+    if(left>0)return;
+    stop();
+    if(mode!=='ex'){snd.go();load(idx,'ex',true);return}      // koniec przerwy → startuje ćwiczenie
+    snd.end();
+    if(idx<LAST&&brk>0){load(idx+1,'br',true);return}         // przerwa automatycznie
+    $('toggle').textContent="Jeszcze raz";$('next').classList.add('pulse');
+    if(navigator.vibrate)navigator.vibrate(200);
+  },1000);
+}
+$('toggle').onclick=()=>{ if(running){stop();$('toggle').textContent="Wznów"} else{$('next').classList.remove('pulse');start()} };
+$('next').onclick=()=>{
+  if(mode!=='ex'){snd.go();load(idx,'ex',true)}
+  else if(idx<LAST)load(idx+1);
+  else{stop();$('summary').textContent="Zrobiłeś wszystkie "+playlist.length+" ćwiczeń. Dobra robota!";snd.end();say("Koniec sesji. Dobra robota!",1000);unlock();show('end')}
+};
+$('prev').onclick=()=>{if(idx>0)load(idx-1)};
+$('quit').onclick=()=>{stop();hush();unlock();show('start')};
+$('go').onclick=()=>{
+  if(sound){actx=actx||new (window.AudioContext||window.webkitAudioContext)();actx.resume&&actx.resume()}
+  show('run');lock();load(0,'pr',true);
+};
+$('again').onclick=()=>show('start');
+document.querySelector('.ringbox').onclick=()=>$('toggle').click();
+
+/* gesty */
+let sx=0,sy=0;
+$('run').addEventListener('touchstart',e=>{const t=e.changedTouches[0];sx=t.clientX;sy=t.clientY},{passive:true});
+$('run').addEventListener('touchend',e=>{
+  const t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy;
+  if(Math.abs(dx)<90||Math.abs(dy)>70)return;
+  if(dx<0)$('next').click();else if(!$('prev').disabled)$('prev').click();
+},{passive:true});
+
+/* banner dla file:// */
+if(IS_FILE){
+  const b=document.createElement('div');b.className='notice';
+  b.innerHTML="⚠️ <strong>Strona otwarta lokalnie jako plik (file://).</strong> Osadzone filmy YouTube wymagają adresu http(s), inaczej pojawia się błąd 153. Wdróż stronę na GitHub Pages albo uruchom <code>python -m http.server</code> i otwórz http://localhost:8000. Przyciski „Obejrzyj na YouTube” działają zawsze.";
+  $('start').insertBefore(b,$('list'));
+}
+show('start');
 </script>
 </body>
 </html>
